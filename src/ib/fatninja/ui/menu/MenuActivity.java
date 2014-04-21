@@ -1,4 +1,4 @@
-package ib.fatninja.ui;
+package ib.fatninja.ui.menu;
 
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.SettingsManager;

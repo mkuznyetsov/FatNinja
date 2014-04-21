@@ -1,4 +1,4 @@
-package ib.fatninja.ui;
+package ib.fatninja.ui.init;
 
 import android.content.Context;
 import android.view.SurfaceView;

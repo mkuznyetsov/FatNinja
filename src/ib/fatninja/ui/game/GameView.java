@@ -1,7 +1,6 @@
-package ib.fatninja.ui;
+package ib.fatninja.ui.game;
 
 import ib.fatninja.R;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,6 @@ import ib.fatninja.base.acive.NPC.Enemy.Troll;
 import ib.fatninja.base.acive.NPC.Enemy.Woolf;
 import ib.fatninja.base.map.Map;
 import ib.fatninja.base.terra.Apple;
-import ib.fatninja.engine.GameLoopThread;
 import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.ui.GameButton;
 import ib.fatninja.engine.ui.JoyPad4Direction;

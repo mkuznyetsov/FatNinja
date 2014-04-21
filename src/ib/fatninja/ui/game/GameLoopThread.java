@@ -1,8 +1,8 @@
-package ib.fatninja.engine;
+package ib.fatninja.ui.game;
 
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
-import ib.fatninja.ui.GameView;
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 

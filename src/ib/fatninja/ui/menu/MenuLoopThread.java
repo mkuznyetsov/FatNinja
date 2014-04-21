@@ -1,6 +1,5 @@
-package ib.fatninja.engine;
+package ib.fatninja.ui.menu;
 
-import ib.fatninja.ui.MenuView;
 import android.graphics.Canvas;
 
 public class MenuLoopThread extends Thread {

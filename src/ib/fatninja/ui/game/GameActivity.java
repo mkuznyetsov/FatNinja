@@ -1,14 +1,15 @@
-package ib.fatninja.ui;
+package ib.fatninja.ui.game;
 
+import java.io.IOException;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-public class InitActivity extends Activity{
+public class GameActivity extends Activity{
 	
-	private InitView initView ;
+	private GameView gameView ;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,19 @@ public class InitActivity extends Activity{
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
 				, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		initView = new InitView(this);
-		setContentView(initView);
+		try {
+			gameView = new GameView(this);
+			setContentView(gameView);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		gameView.gameThread.onResume();
+		gameView.gameThread.setRunning(false);
+		gameView.gameThread = null;
+		super.onBackPressed();
 	}
 }

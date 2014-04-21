@@ -1,6 +1,5 @@
-package ib.fatninja.ui;
+package ib.fatninja.ui.menu;
 
-import ib.fatninja.engine.MenuLoopThread;
 import ib.fatninja.engine.ui.Button;
 import ib.fatninja.engine.ui.MenuButton;
 import ib.fatninja.engine.ui.events.MenuTouchHandler;
@@ -8,7 +7,7 @@ import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
 import ib.fatninja.managers.SoundManager;
-import ib.fatninja.ui.drawable.Background;
+import ib.fatninja.ui.game.GameActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -72,7 +71,7 @@ public class MenuView extends SurfaceView {
 		}
 		return true;
 	}
-	
+		
 	@Override
 	public void onDraw(Canvas c){
 		bg.onDrawObj(c);

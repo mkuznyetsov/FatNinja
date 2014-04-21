@@ -1,6 +1,6 @@
 package ib.fatninja.managers;
 
-import ib.fatninja.ui.MenuActivity;
+import ib.fatninja.ui.menu.MenuActivity;
 
 public class SettingsManager {
 
