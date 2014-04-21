@@ -21,68 +21,26 @@ public class Troll extends BaseActiveObj{
 	public void onDrawObj(Canvas c) {
 		if(waitDelay()){
 			randomMove();
-			switch(movement){
-				case RIGHT:
-					move_right();
-					break;
-				case LEFT:
-					move_left();
-					break;
-				case UP:
-					move_up();
-					break;
-				case DOWN:
-					move_down();
-					break;
-				default:
-					break; 
-			}
+			move();
 			currentFrame++;
 			if(currentFrame == bmpCols)
 				currentFrame = 0;
 		}
-		if(x >= mapWidth - frameWidth)
-			movement = eMovement.LEFT;		
-		if(x <= -1)
-			movement = eMovement.RIGHT;
-		if(y > c.getHeight() - frameHeight )
-			movement = eMovement.UP;
-		if(y <= -1)
-			movement = eMovement.DOWN;
-		
+		checkEndMap(c);		
 		c.drawBitmap(bitmapList.get(movement).get(currentFrame), x, y, null);
 	}
 
 	public void onCollision(ICollisionable handledObj) {
 		switch(handledObj.getObjectType()){
 		case BLOCK:
-			switch(movement){
-			case DOWN:
-				movement = eMovement.UP;
-				move_up();
-				break;
-			case UP:
-				movement = eMovement.DOWN;
-				move_down();
-				break;
-			case RIGHT:
-				movement = eMovement.LEFT;
-				move_left();
-				break;
-			case LEFT:
-				movement = eMovement.RIGHT;
-				move_right();
-				break;
-			default:
-				break;
-		}
+			moveReverse();
 			break;
 		case SLOW:
 			setTicks(2);
 			break;
-	default:
-		break;
-	}
+		default:
+			break;
+		}
 	}
 
 	public eObjectType getObjectType() {

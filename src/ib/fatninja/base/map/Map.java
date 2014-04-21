@@ -121,7 +121,6 @@ public class Map implements ITouchable{
 	}	
 
 	public void onTouchRelease(float x, float y) {
-		
 	}	
 	
 	@SuppressLint("DrawAllocation")

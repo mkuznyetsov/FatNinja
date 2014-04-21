@@ -16,9 +16,9 @@ public abstract class ASpriteObject implements IDrawable, ICollisionable{
 	protected int bmpCols		= 0;
 	protected int bmpRows		= 0;
 	protected int bmpWidth		= 0;
-	protected int bmpHeight	= 0;
+	protected int bmpHeight		= 0;
 	protected int frameWidth  	= 0;
-	protected int frameHeight = 0;
+	protected int frameHeight 	= 0;
 		
 	protected float x 			= 0f;
 	protected float y			= 0f;

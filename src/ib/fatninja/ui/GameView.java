@@ -152,7 +152,8 @@ public class GameView extends SurfaceView {
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		GameTouchHandler.touch(event.getX(), event.getY());
+		if(event.getAction() == android.view.MotionEvent.ACTION_DOWN)
+			GameTouchHandler.touch(event.getX(), event.getY());
 		if(event.getAction() == android.view.MotionEvent.ACTION_UP)
 			GameTouchHandler.touchRelease(event.getX(), event.getY());
 		return true;

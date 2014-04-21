@@ -4,6 +4,7 @@ import ib.fatninja.base.AMovableSpriteObject;
 import ib.fatninja.base.interactObjects.Armor.Armor;
 import ib.fatninja.managers.CoordinateManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 
 /*ARMOR LIST INDEXES
  * 0 HEAD
@@ -24,6 +25,7 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 	protected int TotalArmor = 0;
 	protected Armor[] ArmorList;
 	protected final int mapWidth = CoordinateManager.Instance().getScreenWidth();
+	protected final int mapHeight = CoordinateManager.Instance().getScreenHeight();
 
 	public BaseActiveObj (Bitmap bmp) {
 		this(bmp,4,4);
@@ -52,6 +54,60 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 		}
 	}
 	
+	protected void move (){
+		switch(movement){
+		case RIGHT:
+			move_right();
+			break;
+		case LEFT:
+			move_left();
+			break;
+		case UP:
+			move_up();
+			break;
+		case DOWN:
+			move_down();
+			break;
+		default:
+			break; 
+		}		
+		nextFrame();
+	}
+	
+	protected void moveReverse(){
+		switch(movement){
+		case DOWN:
+			movement = eMovement.UP;
+			move_up();
+			break;
+		case UP:
+			movement = eMovement.DOWN;
+			move_down();
+			break;
+		case RIGHT:
+			movement = eMovement.LEFT;
+			move_left();
+			break;
+		case LEFT:
+			movement = eMovement.RIGHT;
+			move_right();
+			break;
+		default:
+			break;
+		}
+	}
+	
+	protected void checkEndMap(Canvas c){
+		if(x >= mapWidth - frameWidth)
+			movement = eMovement.LEFT;		
+		if(x <= -1)
+			movement = eMovement.RIGHT;
+		if(y > c.getHeight() - frameHeight )
+			movement = eMovement.UP;
+		if(y <= -1)
+			movement = eMovement.DOWN;
+	}
+	
 	public void setStandardTicks(){
 		
 	}
@@ -70,5 +126,11 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 
 	protected void move_down() {
 		y += step;
+	}
+	
+	protected void nextFrame(){
+		currentFrame++;
+		if(currentFrame == bmpCols)
+			currentFrame = 0;
 	}
 }

@@ -11,6 +11,9 @@ import android.view.Window;
  * by ndakota
  */
 public class LevelChooseActivity extends Activity {
+	
+	private int x;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
