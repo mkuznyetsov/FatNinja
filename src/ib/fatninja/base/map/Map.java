@@ -17,9 +17,9 @@ import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.collision.ICollisionable;
 import ib.fatninja.engine.ui.IDrawable;
 import ib.fatninja.engine.ui.events.ITouchable;
-import ib.fatninja.engine.ui.events.GameTouchHandler;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.SettingsManager;
+import ib.fatninja.ui.game.GameTouchHandler;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 

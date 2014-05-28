@@ -2,8 +2,8 @@ package ib.fatninja.engine.ui;
 
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.engine.ui.events.ITouchable;
-import ib.fatninja.engine.ui.events.GameTouchHandler;
 import ib.fatninja.managers.ResourceManager;
+import ib.fatninja.ui.game.GameTouchHandler;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;

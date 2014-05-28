@@ -2,7 +2,6 @@ package ib.fatninja.ui.menu;
 
 import ib.fatninja.engine.ui.Button;
 import ib.fatninja.engine.ui.MenuButton;
-import ib.fatninja.engine.ui.events.MenuTouchHandler;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;

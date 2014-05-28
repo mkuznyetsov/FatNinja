@@ -1,6 +1,6 @@
 package ib.fatninja.engine.ui;
 
-import ib.fatninja.engine.ui.events.MenuTouchHandler;
+import ib.fatninja.ui.menu.MenuTouchHandler;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 

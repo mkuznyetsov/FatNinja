@@ -1,4 +1,6 @@
-package ib.fatninja.engine.ui.events;
+package ib.fatninja.ui.menu;
+
+import ib.fatninja.engine.ui.events.ITouchable;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,6 @@ package ib.fatninja.engine.collision;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import ib.fatninja.managers.CoordinateManager;
 
 public class CollisionHandler {
@@ -38,12 +37,8 @@ public class CollisionHandler {
 				{
 					obj1.onCollision(obj2);
 					obj2.onCollision(obj1);
-				}				
-				
+				}
 			}
-			
 		}
-		
 	}
-	
 }

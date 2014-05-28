@@ -1,5 +1,6 @@
-package ib.fatninja.engine.ui.events;
+package ib.fatninja.ui.game;
 
+import ib.fatninja.engine.ui.events.ITouchable;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -14,7 +14,6 @@ import ib.fatninja.base.terra.Apple;
 import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.ui.GameButton;
 import ib.fatninja.engine.ui.JoyPad4Direction;
-import ib.fatninja.engine.ui.events.GameTouchHandler;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
