@@ -3,6 +3,7 @@ package ib.fatninja.base.acive.Player;
 import ib.fatninja.base.acive.BaseActiveObj;
 import ib.fatninja.base.weapon.AWeapon;
 import ib.fatninja.base.weapon.type.Blaster;
+import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.collision.ICollisionable;
 import ib.fatninja.engine.ui.events.ITouchable;
 import ib.fatninja.managers.ResourceManager;
@@ -17,7 +18,16 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 	public boolean isDead ;
 	private int applesCount = 0;
 	
-	public FatNinja() {
+	private static FatNinja instance;
+	
+	public static FatNinja Instance(){
+		if(instance == null)
+			instance = new FatNinja();
+		CollisionHandler.addCollisionableElement(instance);
+		return instance;
+	}
+	
+	private FatNinja() {
 		super(ResourceManager.Instance().getFatNinjaRes());
 		setStandardTicks();
 		setY(200);

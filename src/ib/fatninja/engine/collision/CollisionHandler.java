@@ -2,6 +2,8 @@ package ib.fatninja.engine.collision;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ib.fatninja.base.acive.Player.FatNinja;
 import ib.fatninja.managers.CoordinateManager;
 
 public class CollisionHandler {
@@ -11,6 +13,7 @@ public class CollisionHandler {
 	
 	public static void clearList(){
 		Elements.clear();
+		Elements.add(FatNinja.Instance());
 	}
 	
 	public static void addCollisionableElement(ICollisionable element){

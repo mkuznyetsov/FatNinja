@@ -18,4 +18,6 @@ public class GameButton extends Button{
 		super(x, y, width, height, bmp, paint);
 		GameTouchHandler.addElement(this);
 	}
+
+
 }

@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import ib.fatninja.base.AMovableSpriteObject.eMovement;
+import ib.fatninja.base.acive.BaseActiveObj;
 import ib.fatninja.base.acive.Player.FatNinja;
 import ib.fatninja.base.terra.Apple;
 import ib.fatninja.base.terra.Bush;
@@ -23,12 +25,12 @@ import ib.fatninja.ui.game.GameTouchHandler;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 
-public class Map implements ITouchable{
+public abstract class MapBase implements ITouchable{
 
-	private int mapID;	
+	protected List<BaseActiveObj> evils = new ArrayList<BaseActiveObj>();
+	
 	private float RBPointX = 0;
 	private float RBPointY = 0;
-	private FatNinja fatNinja ;
 	private final int frameSize = CoordinateManager.Instance().getTileEdge();
 	public boolean[][] availableitems = 
 			new boolean[CoordinateManager.Instance().getTilesOnScreenWidth()]
@@ -38,10 +40,10 @@ public class Map implements ITouchable{
 	
 	private Apple[] apples = new Apple[20];
 	
-	public Map(){
-		this.fatNinja = new FatNinja();
-		CollisionHandler.addCollisionableElement(fatNinja);
+	public MapBase(){
+		initMapFromFile();
 		initApples();
+		initObjects();
 		GameTouchHandler.addElement(this);
 	}
 	
@@ -49,8 +51,8 @@ public class Map implements ITouchable{
 		items = new ArrayList<IDrawable>();		
 	}
 	
-	public void initMapFromFile(int _mapID){
-		this.mapID = _mapID; 
+	protected void initMapFromFile(){
+		int mapID = getMapId(); 
 		InputStream is = SettingsManager.Instance().getActivity()
 				.getResources().openRawResource(mapID);
 		String str="";
@@ -98,14 +100,9 @@ public class Map implements ITouchable{
 				this.addItem(new Ground(i*frameSize,j*frameSize), false);
 				availableitems[i][j] = false;
 			}
-				
 		}
 	}
-		
-	public FatNinja getHero(){
-		return fatNinja;
-	}	
-	
+			
 	public void addItem(IDrawable item, boolean addToCollisionHandler){
 		items.add(item);
 		ICollisionable colItem = (ICollisionable.class.cast(item));
@@ -117,7 +114,7 @@ public class Map implements ITouchable{
 
 	public void onTouchClick(float x, float y) {
 		if(!SettingsManager.Instance().isJoyStickEnabled)
-			fatNinja.coordinator(x, y);
+			FatNinja.Instance().coordinator(x, y);
 	}	
 
 	public void onTouchRelease(float x, float y) {
@@ -131,12 +128,15 @@ public class Map implements ITouchable{
 		for(int i = 0; i< apples.length; i++){
 			apples[i].onDrawObj(c);
 		}
+		for(int i = 0 ; i< evils.size();i++){
+			evils.get(i).onDrawObj(c);
+		}
 		onDrawNinja(c);
 	}
 
 	@SuppressLint("DrawAllocation")
 	public void onDrawNinja(Canvas c){
-		getHero().onDrawObj(c);
+		FatNinja.Instance().onDrawObj(c);
 	}
 
 	public float getX() {
@@ -196,4 +196,44 @@ public class Map implements ITouchable{
 		}
 		return null;
 	}
+
+    protected void addEvil(BaseActiveObj evil, int i){
+        int rndMovement = (int)(Math.random() * 4);
+        int rndX = (int)(Math.random() * CoordinateManager.Instance().getScreenWidth());
+        int rndY = (int)(Math.random() * CoordinateManager.Instance().getScreenHeight());
+
+        evil.setX(rndX*i);
+        evil.setY(rndY*i);
+        evil.setMovement(getMovement(rndMovement));
+
+        evils.add(evil);
+        CollisionHandler.addCollisionableElement(evil);
+    }
+    
+	private eMovement getMovement(int number){
+		switch (number)
+		{
+			case 0:
+				return eMovement.LEFT;
+			case 1:
+				return eMovement.UP;
+			case 2:
+				return eMovement.LEFT;
+			case 3:
+			default:
+				return eMovement.DOWN;
+		}
+	}
+    
+	public void beforeDrawObj(){
+		for(int i = 0 ; i< evils.size();i++){
+			evils.get(i).setStandardTicks();
+		}
+	}
+	
+	public void afterDrawObj(){}
+	
+	protected abstract void initObjects();
+	protected abstract int getMapId();
+	
 }

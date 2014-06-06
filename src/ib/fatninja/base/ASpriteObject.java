@@ -84,4 +84,8 @@ public abstract class ASpriteObject implements IDrawable, ICollisionable{
 		isCollisionDetected = val;
 	}
 	
+	public void beforeDrawObj(){}
+	
+	public void afterDrawObj(){}
+	
 }

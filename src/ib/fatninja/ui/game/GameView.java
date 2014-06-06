@@ -1,15 +1,11 @@
 package ib.fatninja.ui.game;
 
-import ib.fatninja.R;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
-import ib.fatninja.base.acive.BaseActiveObj;
-import ib.fatninja.base.acive.NPC.Enemy.Bear;
-import ib.fatninja.base.acive.NPC.Enemy.Troll;
-import ib.fatninja.base.acive.NPC.Enemy.Woolf;
-import ib.fatninja.base.map.Map;
+import ib.fatninja.base.acive.Player.FatNinja;
+import ib.fatninja.base.map.MapBase;
+import ib.fatninja.base.map.forest0.Map0_0;
+import ib.fatninja.base.map.forest0.Map0_1;
 import ib.fatninja.base.terra.Apple;
 import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.ui.GameButton;
@@ -30,9 +26,8 @@ public class GameView extends SurfaceView {
 	public GameLoopThread gameThread;
 	
     private SurfaceHolder holder;
-    private Map currentMap;
+    private MapBase currentMap;
 	private JoyPad4Direction joyStick;
-	private List<BaseActiveObj> evils = new ArrayList<BaseActiveObj>();
 	private boolean isFirstTime = true;
 	private final int appleDelay = 50;
 	private int appleDelayCounter = 0;
@@ -59,7 +54,13 @@ public class GameView extends SurfaceView {
 					  appleMenu = new Apple(
 							  	 CoordinateManager.Instance().getScorePosition().x - 10
 								,CoordinateManager.Instance().getScorePosition().y - CoordinateManager.Instance().getSpriteEdge() + 10);
-					  initObjects(R.raw.level1);
+					  currentMap = new Map0_0();
+					  if(SettingsManager.Instance().isJoyStickEnabled)
+						  joyStick = new JoyPad4Direction(
+							  CoordinateManager.Instance().getJoystickPosition().x
+							, CoordinateManager.Instance().getJoystickPosition().y
+							, ResourceManager.Instance().getJoyStick().getWidth()
+							, ResourceManager.Instance().getJoyStick().getHeight());
 					  gameThread.setRunning(true);
 			          gameThread.start();	
 					  isFirstTime = false;			
@@ -83,7 +84,7 @@ public class GameView extends SurfaceView {
 		if(SettingsManager.Instance().isJoyStickEnabled){
 			eMovement joyStickMovement = joyStick.getMovement();
 			if(joyStickMovement != eMovement.NONE){				
-				currentMap.getHero().setMovement(joyStickMovement);
+				FatNinja.Instance().setMovement(joyStickMovement);
 				joyStick.setDefault();			
 			}
 		}
@@ -94,7 +95,7 @@ public class GameView extends SurfaceView {
 			appleDelayCounter = 0;
 			addAppleInRandomPlace();
 		}
-		if(ticksPerLevelCounter == 0 || currentMap.getHero().isDead){
+		if(ticksPerLevelCounter == 0 || FatNinja.Instance().isDead){
 			gameThread.onPause();
 			ticksPerLevelCounter = ticksPerLevel;
 		    appleDelayCounter = 0;
@@ -104,7 +105,7 @@ public class GameView extends SurfaceView {
 					ResourceManager.Instance().getGameOverRes());
 			GameButton newGame = new GameButton(
 					 CoordinateManager.Instance().getNewGamePosition().x
-					,CoordinateManager.Instance().getNewGamePosition().y, 400, 35, currentMap.getHero().isDead 
+					,CoordinateManager.Instance().getNewGamePosition().y, 400, 35, FatNinja.Instance().isDead 
 						? ResourceManager.Instance().getNewGameTouchedRes()
 						: ResourceManager.Instance().getNewGameRes()){				
 				@Override
@@ -112,11 +113,10 @@ public class GameView extends SurfaceView {
 					CollisionHandler.clearList();
 				    GameTouchHandler.clearList();
 				    currentMap.clearItems();
-					evils = new ArrayList<BaseActiveObj>();
-					if(currentMap.getHero().isDead)
-						initObjects(R.raw.level1);
+					if(FatNinja.Instance().isDead)
+						currentMap = new Map0_0();
 					else
-						initObjects(R.raw.level2);
+						currentMap = new Map0_1();
 					gameThread.onResume();
 				}
 			};
@@ -126,20 +126,16 @@ public class GameView extends SurfaceView {
 			return;			
 		}
 
-		currentMap.getHero().setStandardTicks();
-
-		for(int i = 0 ; i< evils.size();i++){
-			evils.get(i).setStandardTicks();
-		}
+		FatNinja.Instance().setStandardTicks();
+		currentMap.beforeDrawObj();
+		
 		CollisionHandler.findCollision();
-		currentMap.onDrawObj(c);
-		for(int i = 0 ; i< evils.size();i++){
-			evils.get(i).onDrawObj(c);
-		}
+		currentMap.onDrawObj(c);				
 		appleMenu.onDrawObj(c);
+				
 		if(SettingsManager.Instance().isJoyStickEnabled)
 			joyStick.onDrawObj(c);
-		c.drawText(String.valueOf(currentMap.getHero().getApples())
+		c.drawText(String.valueOf(FatNinja.Instance().getApples())
 				, CoordinateManager.Instance().getScorePosition().x + CoordinateManager.Instance().getSpriteEdge()
 				, CoordinateManager.Instance().getScorePosition().y, StyleManager.Instance().getScoreFontStyle());
 		c.drawText(String.valueOf(ticksPerLevelCounter)
@@ -155,50 +151,5 @@ public class GameView extends SurfaceView {
 			GameTouchHandler.touchRelease(event.getX(), event.getY());
 		return true;
 	}	
-	
-	private void initObjects(int mapID){   
-		if(SettingsManager.Instance().isJoyStickEnabled)
-			joyStick = new JoyPad4Direction(CoordinateManager.Instance().getJoystickPosition().x, CoordinateManager.Instance().getJoystickPosition().y
-					, ResourceManager.Instance().getJoyStick().getWidth()
-					, ResourceManager.Instance().getJoyStick().getHeight());
-		currentMap = new Map();
-		currentMap.initMapFromFile(mapID);
-
-        for(int i = 0; i< 10; i++)
-            addEvil(new Woolf(), i);
-
-		for(int i = 0; i< 10; i++)
-            addEvil(new Bear(), i);
-
-		for(int i = 0; i< 10; i++)
-            addEvil(new Troll(), i);
-	}
-
-    private void addEvil(BaseActiveObj evil, int i){
-        int rndMovement = (int)(Math.random() * 4);
-        int rndX = (int)(Math.random() * CoordinateManager.Instance().getScreenWidth());
-        int rndY = (int)(Math.random() * CoordinateManager.Instance().getScreenHeight());
-
-        evil.setX(rndX*i);
-        evil.setY(rndY*i);
-        evil.setMovement(getMovement(rndMovement));
-
-        evils.add(evil);
-        CollisionHandler.addCollisionableElement(evil);
-    }
-	
-	private eMovement getMovement(int number){
-		switch (number)
-		{
-			case 0:
-				return eMovement.LEFT;
-			case 1:
-				return eMovement.UP;
-			case 2:
-				return eMovement.LEFT;
-			case 3:
-			default:
-				return eMovement.DOWN;
-		}
-	}
+		
 }

@@ -50,4 +50,8 @@ public abstract class ABaseDrawableObj implements IDrawable{
 	protected void setY(float y){
 		this.y = y;
 	}
+
+	public void beforeDrawObj(){}
+	
+	public void afterDrawObj(){}
 }

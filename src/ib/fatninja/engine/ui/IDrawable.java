@@ -5,10 +5,20 @@ import android.graphics.Canvas;
 public interface IDrawable {
 	
 	/**
+	 * Calls before onDrawObj()
+	 * */
+	void beforeDrawObj();
+	
+	/**
 	 * Calls from infinity loop thread
 	 * @param c - canvas to draw on
 	 */
 	void onDrawObj(Canvas c);
+	
+	/**
+	 * Calls after onDrawObj()
+	 * */
+	void afterDrawObj();
 	
 	/**
 	 * @return X position of left top point

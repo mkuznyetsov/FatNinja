@@ -106,4 +106,8 @@ public abstract class AAmmo extends Paint implements IDrawable, ICollisionable{
 	public void setIsCollisionDetected(boolean val){
 		isCollisionDetected = val;
 	}
+
+	public void beforeDrawObj(){}
+	
+	public void afterDrawObj(){}
 }

@@ -68,4 +68,10 @@ public class Background implements IDrawable {
 		return	getY() + getHeight();
 	}
 
+	@Override
+	public void beforeDrawObj() {	}
+
+	@Override
+	public void afterDrawObj() {	}
+
 }
