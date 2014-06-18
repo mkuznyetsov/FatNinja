@@ -2,7 +2,6 @@ package ib.fatninja.ui.game;
 
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
-import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
