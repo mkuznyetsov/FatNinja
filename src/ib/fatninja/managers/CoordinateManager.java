@@ -5,7 +5,7 @@ import android.graphics.Point;
 /**
 * this class contains information about screen resolution,
 * canvas size, standard sprite objects size, surfaceView size, 
-* standard buttons size,panels size etc.
+* standard buttons size,panels size etc. according to device resolution
 **/
 
 public class CoordinateManager {
@@ -20,6 +20,8 @@ public class CoordinateManager {
 	
 	private final int JoyStickPercentOfSmallestSide = 40;
 		
+	private CoordinateManager(){}
+	
 	private static CoordinateManager instance;
 	
 	public static CoordinateManager Instance(){
@@ -44,9 +46,6 @@ public class CoordinateManager {
 	private Point newGamePosition;
 	private Point gameOverPosition;
 	
-	private CoordinateManager(){
-	}
-
 	public int getJoyStickEdge(){
 		if(joyStickEdge == -1){
 			joyStickEdge = JoyStickPercentOfSmallestSide * getSmallestSide() / 100;

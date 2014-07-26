@@ -4,6 +4,8 @@ import ib.fatninja.ui.menu.MenuActivity;
 
 public class SettingsManager {
 
+	private SettingsManager(){}
+	
 	private static SettingsManager instance = null;
 	
 	public static SettingsManager Instance(){

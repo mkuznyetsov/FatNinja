@@ -18,6 +18,8 @@ public class SoundManager {
 
 	private MediaPlayer mpGame;
 	
+	private SoundManager(){}
+	
 	private static SoundManager instance;
 	
 	public static SoundManager Instance(){

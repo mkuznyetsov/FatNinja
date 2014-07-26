@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 
 public class StyleManager {
 
+	private StyleManager(){}
+	
 	private static StyleManager instance;
 	
 	public static StyleManager Instance(){

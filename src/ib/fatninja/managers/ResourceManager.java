@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 
 public class ResourceManager {
 
+	private ResourceManager(){}
+	
 	private static ResourceManager instance;
 	
 	public static ResourceManager Instance(){

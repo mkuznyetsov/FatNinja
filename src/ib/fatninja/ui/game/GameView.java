@@ -75,12 +75,8 @@ public class GameView extends SurfaceView {
 		});
 	}
 	
-	private void addAppleInRandomPlace(){
-		currentMap.addApple();
-	}	
-	
 	@Override
-	public void onDraw(Canvas c){
+	public void draw(Canvas c){
 		if(SettingsManager.Instance().isJoyStickEnabled){
 			eMovement joyStickMovement = joyStick.getMovement();
 			if(joyStickMovement != eMovement.NONE){				
@@ -93,7 +89,7 @@ public class GameView extends SurfaceView {
 
 		if(appleDelayCounter >= appleDelay ){
 			appleDelayCounter = 0;
-			addAppleInRandomPlace();
+			currentMap.addApple();
 		}
 		if(ticksPerLevelCounter == 0 || FatNinja.Instance().isDead){
 			gameThread.onPause();
@@ -113,11 +109,14 @@ public class GameView extends SurfaceView {
 					CollisionHandler.clearList();
 				    GameTouchHandler.clearList();
 				    currentMap.clearItems();
-					if(FatNinja.Instance().isDead)
+					if(FatNinja.Instance().isDead){
+						FatNinja.Instance().clear();
 						currentMap = new Map0_0();
+					}
 					else
 						currentMap = new Map0_1();
 					gameThread.onResume();
+					GameTouchHandler.addElement(joyStick);
 				}
 			};
 			c.drawRGB(0, 0, 0);

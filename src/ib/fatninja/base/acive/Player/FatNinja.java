@@ -23,18 +23,22 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 	public static FatNinja Instance(){
 		if(instance == null)
 			instance = new FatNinja();
-		CollisionHandler.addCollisionableElement(instance);
 		return instance;
 	}
 	
 	private FatNinja() {
 		super(ResourceManager.Instance().getFatNinjaRes());
-		setStandardTicks();
-		setY(200);
-		isDead = false;
-		setMovement(eMovement.RIGHT);
+		clear();
 		selectedWeapon = new Blaster(this);
 		objectType = eObjectType.PLAYER;
+	}
+	
+	public void clear(){
+		setStandardTicks();
+		setY(200);
+		setX(0);
+		isDead = false;
+		setMovement(eMovement.RIGHT);		
 	}
 	
 	@Override

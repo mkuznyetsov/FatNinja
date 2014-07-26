@@ -2,101 +2,49 @@ package ib.fatninja.ui.game;
 
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
-import android.annotation.SuppressLint;
+import ib.fatninja.ui.LoopThread;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.view.SurfaceView;
 
-public class GameLoopThread extends Thread {
+public class GameLoopThread extends LoopThread {
 	
-	private boolean isRunning = false;
-	private GameView gv;
-	
-	private Object mPauseLock;
-	private boolean mPaused;
-		
-	public GameLoopThread(GameView _gv){
-		this.gv = _gv;
-	    mPauseLock = new Object();
-	    mPaused = false;
+	public GameLoopThread(SurfaceView view) {
+		super(view);
 	}
-		
-	public void setRunning(boolean run) {
-		isRunning = run;
-	}
-	
+
 	@Override
-	public void run() {
-		while (isRunning){
-	        Canvas c = null; 
-	        try{
-	            c = gv.getHolder().lockCanvas(); 
-	            synchronized (gv.getHolder()){ 
-	            	if(c != null){
-	            	   if(SettingsManager.Instance().isMovieEnabled)
-	    	    		{
-	    	    			try {
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(0), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(1), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(2), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(3), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(4), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(5), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(6), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(7), 1500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(8), 800);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(9), 500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(10), 500);
-	    	    				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(11), 500);
-	    	    				
-	    	    			} catch (InterruptedException e) {
-	    	    				e.printStackTrace();
-	    	    			}
-	    	    			SettingsManager.Instance().isMovieEnabled = false;
-	    	    		} 
-	            	   if(c != null)
-	            		   gv.onDraw(c); 
-	            	}
-	            }
-	        }finally{
-	            if(c != null) {
-	            	gv.getHolder().unlockCanvasAndPost(c); 
-	            }
-	        }try {
-	        		sleep(16);
-	        }catch(Exception e){
-
-	        }
-	        synchronized (mPauseLock) {
-                while (mPaused) {
-                    try {
-                        mPauseLock.wait();
-                    } catch (InterruptedException e) {
-                    }
-                }
-            }		
-		}
+	public void onTick(Canvas c){
+		if(SettingsManager.Instance().isMovieEnabled)
+		{
+			try {
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(0), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(1), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(2), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(3), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(4), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(5), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(6), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(7), 1500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(8), 800);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(9), 500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(10), 500);
+				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(11), 500);				
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			SettingsManager.Instance().isMovieEnabled = false;
+		} 
 	}
 	
 	private void ShowMovieFrame(Canvas c, Bitmap bmp, int delay) throws InterruptedException{
 		if(bmp == null)
 			return;
 		c.drawBitmap(bmp,0,0,null);
-    	gv.getHolder().unlockCanvasAndPost(c); 
+		view.getHolder().unlockCanvasAndPost(c); 
 		sleep(delay);
- 	    c = gv.getHolder().lockCanvas();
+ 	    c = view.getHolder().lockCanvas();
  	   	bmp.recycle();
 	}
 	
-    public void onPause() {
-        synchronized (mPauseLock) {
-            mPaused = true;
-        }
-    }
-
-    public void onResume() {
-        synchronized (mPauseLock) {
-            mPaused = false;
-            mPauseLock.notifyAll();
-        }
-    }
 }

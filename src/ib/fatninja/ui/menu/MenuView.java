@@ -35,7 +35,7 @@ public class MenuView extends SurfaceView {
 		if(menuLoopThread == null){
 			menuLoopThread = new MenuLoopThread(this);
 			InitObjects();
-			menuLoopThread.setIsRunning(true);
+			menuLoopThread.setRunning(true);
 			menuLoopThread.start();			
 		}
 
@@ -72,7 +72,7 @@ public class MenuView extends SurfaceView {
 	}
 		
 	@Override
-	public void onDraw(Canvas c){
+	public void draw(Canvas c){
 		bg.onDrawObj(c);
 		startButton.onDrawObj(c);
 		exitButton.onDrawObj(c);
@@ -96,7 +96,7 @@ public class MenuView extends SurfaceView {
 				, CoordinateManager.Instance().getScreenHeight() - 100, 140, 35, ResourceManager.Instance().getExitRes()) {
 			@Override
 			public void onTouchClick(float x, float y) {
-				menuLoopThread.setIsRunning(false);
+				menuLoopThread.setRunning(false);
 				menuLoopThread.onResume();
 				menuLoopThread = null;
 				SettingsManager.Instance().getActivity().finish();
