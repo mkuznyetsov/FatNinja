@@ -16,11 +16,10 @@ public class ProgressManager {
 	public void Save(){
 		try {
 			FileOutputStream fos = new FileOutputStream("progress.dat");
-			fos.write(buffer)
+		//	fos.write(buffer)
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 	
