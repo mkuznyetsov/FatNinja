@@ -6,7 +6,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 
 /**
-* ALL SOUNDS SHOULD BE INITIALIZED HERE. 
+* All sounds should be initialized here. 
 */
 public class SoundManager {
 	

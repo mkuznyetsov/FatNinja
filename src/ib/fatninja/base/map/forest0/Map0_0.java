@@ -11,7 +11,7 @@ public class Map0_0 extends MapBase{
 	@Override
 	protected void initObjects() {        
 		for(int i = 0; i< 10; i++)
-        addEvil(new Woolf(), i);
+			addEvil(new Woolf(), i);
 
 		for(int i = 0; i< 10; i++)
 	        addEvil(new Bear(), i);

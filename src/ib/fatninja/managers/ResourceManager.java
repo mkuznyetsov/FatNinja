@@ -185,56 +185,56 @@ public class ResourceManager {
 	public Bitmap getAppleRes() {
 		if(AppleResource == null){
 			AppleResource = new Bitmap[4];
-			FillResourceList(AppleResource
+			fillResourceList(AppleResource
 					, BitmapFactory.decodeResource(  SettingsManager.Instance().getActivity().getResources(), R.drawable.apple_obj)
 					, CoordinateManager.Instance().getSpriteEdge());
 		}
-		return GetRandomResource(AppleResource);
+		return getRandomResource(AppleResource);
 	}
 	
 	public Bitmap getHoleRes() {
 		if( HoleResource == null){
 			HoleResource = new Bitmap[4];
-			FillResourceList(HoleResource
+			fillResourceList(HoleResource
 					, BitmapFactory.decodeResource(  SettingsManager.Instance().getActivity().getResources(), R.drawable.hole_obj));
 		}
-		return GetRandomResource(HoleResource);
+		return getRandomResource(HoleResource);
 	}
 
 	public Bitmap getBushRes() {
 		if( BushResource == null){
 			BushResource = new Bitmap[4];
-			FillResourceList(BushResource
+			fillResourceList(BushResource
 					, BitmapFactory.decodeResource(  SettingsManager.Instance().getActivity().getResources(), R.drawable.bush_obj));
 		}
-		return GetRandomResource(BushResource);
+		return getRandomResource(BushResource);
 	}
 
 	public Bitmap getGroundRes() {
 		if( GroundResource == null){
 			GroundResource = new Bitmap[4];
-			FillResourceList(GroundResource
+			fillResourceList(GroundResource
 					, BitmapFactory.decodeResource(  SettingsManager.Instance().getActivity().getResources(), R.drawable.ground_obj));
 		}
-		return GetRandomResource(GroundResource);
+		return getRandomResource(GroundResource);
 	}
 
 	public Bitmap getGrassRes() {
 		if( GrassResource == null){
 			GrassResource = new Bitmap[4];
-			FillResourceList(GrassResource
+			fillResourceList(GrassResource
 					, BitmapFactory.decodeResource(  SettingsManager.Instance().getActivity().getResources(), R.drawable.grass_obj));
 		}
-		return GetRandomResource(GrassResource);
+		return getRandomResource(GrassResource);
 	}
 
 	public Bitmap getTreeRes() {
 		if( TreeResource == null){
 			TreeResource = new Bitmap[4];
-			FillResourceList(TreeResource
+			fillResourceList(TreeResource
 					, BitmapFactory.decodeResource( SettingsManager.Instance().getActivity().getResources(), R.drawable.tree_obj));
 		}
-		return GetRandomResource(TreeResource);
+		return getRandomResource(TreeResource);
 	}
 	
 	public Bitmap getJoyStick(){
@@ -253,7 +253,7 @@ public class ResourceManager {
 		if (ninjaList == null){
 			ninjaList = new Bitmap[4];
 			Bitmap ninjaBMP = ResourceManager.Instance().getManuNinjaRes();
-			FillResourceList(ninjaList, ninjaBMP, CoordinateManager.Instance().getTileEdge()*5);		
+			fillResourceList(ninjaList, ninjaBMP, CoordinateManager.Instance().getTileEdge()*5);		
 		}
 		return ninjaList;
 	}
@@ -289,11 +289,11 @@ public class ResourceManager {
 		return null;
 	}
 	
-	private Bitmap GetRandomResource(Bitmap[] items){
+	private Bitmap getRandomResource(Bitmap[] items){
 		return items[(int)(Math.random() * items.length)];
 	}
 	
-	private void FillResourceList(Bitmap items[], Bitmap res, int scaleValue){
+	private void fillResourceList(Bitmap items[], Bitmap res, int scaleValue){
 		int frameWidth = res.getWidth() / 4;
 		for(int i = 0; i < 4; i++){
 			items[i] = Bitmap.createBitmap(res, i*frameWidth,  0, frameWidth - 1, res.getHeight() - 1);
@@ -303,8 +303,8 @@ public class ResourceManager {
 		}
 	}
 	
-	private void FillResourceList(Bitmap items[], Bitmap res){
-		FillResourceList(items, res, CoordinateManager.Instance().getTileEdge());
+	private void fillResourceList(Bitmap items[], Bitmap res){
+		fillResourceList(items, res, CoordinateManager.Instance().getTileEdge());
 	}
 	
 	private Bitmap createScaledMovieFrame(int resID){
