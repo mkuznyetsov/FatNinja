@@ -1,9 +1,17 @@
 package ib.fatninja.ui.levelchoose;
 
-public class LevelChooseLoopThread extends Thread{
+import android.graphics.Canvas;
+import android.view.SurfaceView;
+import ib.fatninja.ui.LoopThread;
 
-	private boolean isRunning = false;
-	private LevelChooseView view;
-	
+public class LevelChooseLoopThread extends LoopThread{
+
+	public LevelChooseLoopThread(SurfaceView view) {
+		super(view);
+	}
+
+	@Override
+	protected void onTick(Canvas c) {
+	}
 	
 }
