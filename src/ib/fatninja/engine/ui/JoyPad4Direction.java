@@ -3,7 +3,7 @@ package ib.fatninja.engine.ui;
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.engine.ui.events.ITouchable;
 import ib.fatninja.managers.ResourceManager;
-import ib.fatninja.ui.game.GameTouchHandler;
+import ib.fatninja.ui.TouchHandler;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -35,7 +35,7 @@ public class JoyPad4Direction extends ABaseDrawableObj implements ITouchable{
 	
 	private eMovement movement;
 	
-	public JoyPad4Direction(float x, float y, float width, float height){
+	public JoyPad4Direction(float x, float y, float width, float height, TouchHandler touchHandler){
 		movement = eMovement.NONE;
 		setX(x);
 		setY(y);
@@ -88,7 +88,7 @@ public class JoyPad4Direction extends ABaseDrawableObj implements ITouchable{
 
         buttonUp.close();
 		
-		GameTouchHandler.addElement(this);
+        touchHandler.addElement(this);
 	}
 
 	public void onDrawObj(Canvas c) {		

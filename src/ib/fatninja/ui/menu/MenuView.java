@@ -1,11 +1,11 @@
 package ib.fatninja.ui.menu;
 
 import ib.fatninja.engine.ui.Button;
-import ib.fatninja.engine.ui.MenuButton;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
 import ib.fatninja.managers.SoundManager;
+import ib.fatninja.ui.TouchHandler;
 import ib.fatninja.ui.game.GameActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,20 +18,23 @@ import android.view.SurfaceView;
 public class MenuView extends SurfaceView {
 
 	private MenuLoopThread menuLoopThread;
+	private TouchHandler touchHandler;
 
 	private Background bg;
-	private MenuButton startButton;
-	private MenuButton exitButton;
+	private Button startButton;
+	private Button exitButton;
 
-	private MenuButton movieButton;
-	private MenuButton joyStickButton;
-	private MenuButton soundButton;
+	private Button movieButton;
+	private Button joyStickButton;
+	private Button soundButton;
 	
 	private MenuView THIS;
 
 	public MenuView(Context context) {
 		super(context);
 		THIS = this;
+		if(touchHandler == null)
+			touchHandler = new TouchHandler();
 		if(menuLoopThread == null){
 			menuLoopThread = new MenuLoopThread(this);
 			InitObjects();
@@ -66,7 +69,7 @@ public class MenuView extends SurfaceView {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getAction() == 0) {
-			MenuTouchHandler.Instance().touch(event.getX(), event.getY());
+			touchHandler.touch(event.getX(), event.getY());
 		}
 		return true;
 	}
@@ -82,9 +85,11 @@ public class MenuView extends SurfaceView {
 	}
 	
 	private void InitObjects(){
-		MenuTouchHandler.Instance().clear();
+		touchHandler.clear();
 		bg = new Background();
-		startButton = new MenuButton(30, 30, 270, 35, ResourceManager.Instance().getNewGameRes()) {
+		startButton = new Button(30, 30, 270, 35
+				, ResourceManager.Instance().getNewGameRes()
+				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
 				Intent myIntent = new Intent(THIS.getContext(), GameActivity.class);
@@ -92,8 +97,10 @@ public class MenuView extends SurfaceView {
 			}
 		};
 
-		exitButton = new MenuButton(CoordinateManager.Instance().getScreenWidth() - 170
-				, CoordinateManager.Instance().getScreenHeight() - 100, 140, 35, ResourceManager.Instance().getExitRes()) {
+		exitButton = new Button(CoordinateManager.Instance().getScreenWidth() - 170
+				, CoordinateManager.Instance().getScreenHeight() - 100, 140, 35
+				, ResourceManager.Instance().getExitRes()
+				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
 				menuLoopThread.setRunning(false);
@@ -102,8 +109,8 @@ public class MenuView extends SurfaceView {
 				SettingsManager.Instance().getActivity().finish();
 			}
 		};
-		
-		movieButton = new MenuButton(CoordinateManager.Instance().getScreenWidth() - 100, 40, 50, 50) {
+		movieButton = new Button(CoordinateManager.Instance().getScreenWidth() - 100, 40, 50, 50
+				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
 				SettingsManager.Instance().isMovieEnabled = !SettingsManager.Instance().isMovieEnabled;
@@ -112,7 +119,8 @@ public class MenuView extends SurfaceView {
 		};
 		setMovieCheckboxButton();
 		
-		joyStickButton = new MenuButton(CoordinateManager.Instance().getScreenWidth() - 100, 110, 50, 50) {
+		joyStickButton = new Button(CoordinateManager.Instance().getScreenWidth() - 100, 110, 50, 50
+				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
 				SettingsManager.Instance().isJoyStickEnabled = !SettingsManager.Instance().isJoyStickEnabled;
@@ -121,7 +129,8 @@ public class MenuView extends SurfaceView {
 		};
 		setJoystickCheckboxButton();
 		
-		soundButton = new MenuButton(CoordinateManager.Instance().getScreenWidth() - 100, 180, 50, 50) {
+		soundButton = new Button(CoordinateManager.Instance().getScreenWidth() - 100, 180, 50, 50
+				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
 				SettingsManager.Instance().isSoundEnabled = !SettingsManager.Instance().isSoundEnabled;
@@ -138,12 +147,14 @@ public class MenuView extends SurfaceView {
 	
 	private void setMovieCheckboxButton(){
 		setCheckboxButton(movieButton, SettingsManager.Instance().isMovieEnabled
-				, ResourceManager.Instance().getMovieOnRes(), ResourceManager.Instance().getMovieOffRes());
+				, ResourceManager.Instance().getMovieOnRes()
+				, ResourceManager.Instance().getMovieOffRes());
 	}
 
 	private void setJoystickCheckboxButton(){
 		setCheckboxButton(joyStickButton, SettingsManager.Instance().isJoyStickEnabled
-				, ResourceManager.Instance().getJoyStickOnRes(), ResourceManager.Instance().getJoyStickOffRes());
+				, ResourceManager.Instance().getJoyStickOnRes()
+				, ResourceManager.Instance().getJoyStickOffRes());
 	}
 
 	private void setSoundCheckboxButton(){

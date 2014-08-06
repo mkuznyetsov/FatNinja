@@ -21,7 +21,7 @@ import ib.fatninja.engine.ui.IDrawable;
 import ib.fatninja.engine.ui.events.ITouchable;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.SettingsManager;
-import ib.fatninja.ui.game.GameTouchHandler;
+import ib.fatninja.ui.TouchHandler;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 
@@ -44,7 +44,6 @@ public abstract class MapBase implements ITouchable{
 		initMapFromFile();
 		initApples();
 		initObjects();
-		GameTouchHandler.addElement(this);
 	}
 	
 	public void clearItems(){
