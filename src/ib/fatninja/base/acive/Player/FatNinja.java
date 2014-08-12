@@ -78,6 +78,7 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 				break;
 			case ENEMY:
 				isDead = true;
+				applesCount = 0;
 				break;
 			case INTERACT:
 				increseApples();
