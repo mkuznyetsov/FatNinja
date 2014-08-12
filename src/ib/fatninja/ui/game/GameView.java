@@ -71,7 +71,7 @@ public class GameView extends SurfaceView {
 					  isFirstTime = false;			
 				  }
 				  else
-					  gameThread.resume();
+					  gameThread.setResume();
 				  SoundManager.Instance().playGameSound();
 			}
 			public void surfaceChanged(SurfaceHolder holder, int format,
@@ -127,7 +127,7 @@ public class GameView extends SurfaceView {
 					}
 					else
 						currentMap = new Map0_1();
-					gameThread.resume();
+					gameThread.setResume();
 					touchHandler.addElement(currentMap);
 					touchHandler.addElement(joyStick);
 				}

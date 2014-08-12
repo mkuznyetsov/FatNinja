@@ -1,4 +1,5 @@
 package ib.fatninja.ui.menu;
+
 import ib.fatninja.engine.ui.IDrawable;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
@@ -8,14 +9,14 @@ import android.graphics.Color;
 
 public class Background implements IDrawable {
 
-	Bitmap cloudsBMP;
-	Bitmap forestBMP;
-	Bitmap ninjaBMP;
-	int cloudsX = 0;
-	int ticks = 0;
-	Bitmap[] ninjaList ;
+	private Bitmap cloudsBMP;
+	private Bitmap forestBMP;
+	private Bitmap ninjaBMP;
+	private int cloudsX = 0;
+	private int ticks = 0;
+	private Bitmap[] ninjaList ;
 	
-	int ninjaFrameIndex = 0;
+	private int ninjaFrameIndex = 0;
 	
 	public Background(){		
 		cloudsBMP =	ResourceManager.Instance().getCloudRes();
@@ -31,8 +32,7 @@ public class Background implements IDrawable {
 			ticks = 0;
 		}
 		
-		if(cloudsX < -getWidth())
-		{
+		if(cloudsX < -getWidth()){
 			cloudsX = 0;
 		}
 
@@ -61,11 +61,11 @@ public class Background implements IDrawable {
 	}
 
 	public float getRBPointX() {
-		return	getX() + getWidth();
+		return getX() + getWidth();
 	}
 
 	public float getRBPointY() {
-		return	getY() + getHeight();
+		return getY() + getHeight();
 	}
 
 	@Override

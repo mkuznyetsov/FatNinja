@@ -3,27 +3,39 @@ package ib.fatninja.base;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-
 import ib.fatninja.managers.CoordinateManager;
 import android.graphics.Bitmap;
 
-/*	BMP RULES
- * 1 ROW MOVE DOWN
- * 2 ROW MOVE LEFT
- * 3 ROW MOVE RIGHT
- * 4 ROW MOVE UP
+/**	
+ * <p> BMP rules </p>
+ * <p> 1 row = images for move down </p>
+ * <p> 2 row = images for move left </p>
+ * <p> 3 row = images for move right </p>
+ * <p> 4 row = images for move up </p>
  * */
 public abstract class AMovableSpriteObject extends ASpriteObject{
 	
 	public enum eMovement{
-		LEFT,RIGHT,UP,DOWN,NONE
+		LEFT, RIGHT, UP, DOWN, NONE
 	}
 
+	/**
+	 * The direction in which the unit is faced.
+	 * */
 	protected eMovement movement = eMovement.NONE;
 
+	/**
+	 * The value which is added to unit position when the unit is moving.
+	 * */
 	protected float step 		= 0.0f;
-	protected int ticks			= 0;	
-	private   int currentTicks	= 0;
+	
+	/**
+	 * <p> Used to slow unit for amount of ticks. </p>
+	 * <p> As less this value as faster the unit. </p>
+	 */
+	protected int ticks			= 0;
+	
+	private int currentTicks	= 0;
 	
 	protected Hashtable<eMovement, List<Bitmap>> bitmapList = new Hashtable<eMovement, List<Bitmap>>();
 	
@@ -88,27 +100,46 @@ public abstract class AMovableSpriteObject extends ASpriteObject{
 			currentTicks = 0;
 		return result;
 	}
-	
+
+	/**
+	 * @see {@link #step}.
+	 * */
 	public float getStep() {
 		return step;
 	}
+	
+	/**
+	 * @see {@link #step}.
+	 * */
 	public void setStep(float speed) {
 		this.step = speed;
 	}
-	
+
+	/**
+	 * @see {@link #ticks}.
+	 * */
 	public int getTicks() {
 		return ticks;
 	}
 	
+	/**
+	 * @see {@link #ticks}.
+	 * */
 	public void setTicks(int ticks) {
 		this.ticks = ticks;
 	}
-	
+
+	/**
+	 * @see {@link #movement}.
+	 * */
 	public eMovement getMovement() {
 		return movement;
 	}
+
+	/**
+	 * @see {@link #movement}.
+	 * */
 	public void setMovement(eMovement movement) {
 		this.movement = movement;
 	}
-
 }

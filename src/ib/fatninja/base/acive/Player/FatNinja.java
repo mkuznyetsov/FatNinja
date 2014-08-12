@@ -59,7 +59,7 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 		selectedWeapon.onActionDraw(c);
 		if(waitDelay()){
 			move();
-			checkEndMap(c);	
+			checkEndOfMap(c);	
 		}	
 		c.drawBitmap(bitmapList.get(movement).get(currentFrame), x, y, null);
 	}
@@ -151,5 +151,10 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 
 	public eObjectType getObjectType() {
 		return objectType;
+	}
+
+	@Override
+	protected int getTurnRate() {
+		return 0;
 	}
 }

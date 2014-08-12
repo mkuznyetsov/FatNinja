@@ -6,19 +6,8 @@ import ib.fatninja.managers.CoordinateManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-/*ARMOR LIST INDEXES
- * 0 HEAD
- * 1 SHOULDER
- * 2 CHEST
- * 3 HANDS
- * 4 BRACER
- * 5 PANTS
- * 6 BOTS
- * */
-
 public abstract class BaseActiveObj extends AMovableSpriteObject{
 
-	protected int randomTurnRate = 0;
 	protected int currentFrame = 0;
 	protected eObjectType objectType = eObjectType.NONE; 
 	protected int Health = 100;
@@ -36,10 +25,14 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 		setStep(CoordinateManager.Instance().getSpriteStep());
 	}	
 	
+	/**
+	 * Turn and move unit in random direction 
+	 * according to {@link #getTurnRate} method.
+	 * */
 	protected void randomMove(){
 		double rnd = Math.random() * 100;
 		int rndPercent = (int)rnd;
-		if(rndPercent <= randomTurnRate)
+		if(rndPercent <= getTurnRate())
 		{
 			double rndMove = Math.random() * 4;
 			int rndMoveInt = (int)rndMove;
@@ -52,21 +45,22 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 			if(rndMoveInt == 3)
 				movement = eMovement.RIGHT;
 		}
+		move();
 	}
 	
 	protected void move (){
 		switch(movement){
 		case RIGHT:
-			move_right();
+			moveRight();
 			break;
 		case LEFT:
-			move_left();
+			moveLeft();
 			break;
 		case UP:
-			move_up();
+			moveUp();
 			break;
 		case DOWN:
-			move_down();
+			moveDown();
 			break;
 		default:
 			break; 
@@ -78,26 +72,23 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 		switch(movement){
 		case DOWN:
 			movement = eMovement.UP;
-			move_up();
 			break;
 		case UP:
 			movement = eMovement.DOWN;
-			move_down();
 			break;
 		case RIGHT:
 			movement = eMovement.LEFT;
-			move_left();
 			break;
 		case LEFT:
 			movement = eMovement.RIGHT;
-			move_right();
 			break;
 		default:
 			break;
 		}
+		move();
 	}
 	
-	protected void checkEndMap(Canvas c){
+	protected void checkEndOfMap(Canvas c){
 		if(x >= mapWidth - frameWidth)
 			movement = eMovement.LEFT;		
 		if(x <= -1)
@@ -108,23 +99,27 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 			movement = eMovement.DOWN;
 	}
 	
+	/**
+	 * <p> This is default value for ticks. </p>
+	 * <p> Amount of ticks will be set to this value before draw the unit</p>
+	 * @see {@link AMovableSpriteObject#ticks}
+	 * */
 	public void setStandardTicks(){
-		
 	}
 	
-	protected void move_left() {
+	protected void moveLeft() {
 		x -= step;
 	}
 
-	protected void move_right() {
+	protected void moveRight() {
 		x += step;
 	}
 
-	protected void move_up() {
+	protected void moveUp() {
 		y -= step;
 	}
 
-	protected void move_down() {
+	protected void moveDown() {
 		y += step;
 	}
 	
@@ -133,4 +128,9 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 		if(currentFrame == bmpCols)
 			currentFrame = 0;
 	}
+	
+	/**
+	 * <p> This value is a chance ( in percent ) to turn unit in random direction.</p>
+	 * */
+	protected abstract int getTurnRate();
 }

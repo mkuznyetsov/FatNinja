@@ -14,7 +14,6 @@ public class Grass extends ASpriteObject {
 	}
 	
 	public void onCollision(ICollisionable handledObj) {
-		// SHOULD BE OVERRIDDEN		
 	}
 
 	public eObjectType getObjectType() {

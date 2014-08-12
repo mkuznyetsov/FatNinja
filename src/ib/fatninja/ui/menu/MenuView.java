@@ -53,7 +53,7 @@ public class MenuView extends SurfaceView {
 
 			// Start first
 			public void surfaceCreated(SurfaceHolder holder) {
-				menuLoopThread.resume();
+				menuLoopThread.setResume();
 				setMovieCheckboxButton();
 				setJoystickCheckboxButton();
 				setSoundCheckboxButton();
@@ -104,7 +104,7 @@ public class MenuView extends SurfaceView {
 			@Override
 			public void onTouchClick(float x, float y) {
 				menuLoopThread.setRunning(false);
-				menuLoopThread.resume();
+				menuLoopThread.setResume();
 				menuLoopThread = null;
 				SettingsManager.Instance().getActivity().finish();
 			}
