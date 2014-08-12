@@ -11,7 +11,7 @@ public class TouchHandler {
 	private List<ITouchable> touchableElements = new ArrayList<ITouchable>();
 	
 	public void clear(){
-		touchableElements.clear();	
+		touchableElements = new ArrayList<ITouchable>();
 	}
 	
 	public void addElement(ITouchable element){

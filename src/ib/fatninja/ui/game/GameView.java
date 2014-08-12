@@ -129,7 +129,6 @@ public class GameView extends SurfaceView {
 						currentMap = new Map0_1();
 					gameThread.setResume();
 					touchHandler.addElement(currentMap);
-					touchHandler.addElement(joyStick);
 				}
 			};
 			c.drawRGB(0, 0, 0);

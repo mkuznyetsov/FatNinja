@@ -2,10 +2,9 @@ package ib.fatninja.base.map.forest0;
 
 import ib.fatninja.R;
 import ib.fatninja.base.map.MapBase;
-import ib.fatninja.ui.TouchHandler;
 
 public class Map0_1 extends MapBase{
-
+	
 	@Override
 	protected void initObjects() {
 		

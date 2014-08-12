@@ -5,6 +5,7 @@ import ib.fatninja.base.interactObjects.Armor.Armor;
 import ib.fatninja.managers.CoordinateManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
 
 public abstract class BaseActiveObj extends AMovableSpriteObject{
 
@@ -30,6 +31,10 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 	 * according to {@link #getTurnRate} method.
 	 * */
 	protected void randomMove(){
+		Point[] points = new Point[]{
+			new Point(2,2),
+			new Point(3,4)
+		};
 		double rnd = Math.random() * 100;
 		int rndPercent = (int)rnd;
 		if(rndPercent <= getTurnRate())

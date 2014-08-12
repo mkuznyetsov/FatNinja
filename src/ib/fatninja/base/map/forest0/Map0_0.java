@@ -5,7 +5,6 @@ import ib.fatninja.base.acive.NPC.Enemy.Bear;
 import ib.fatninja.base.acive.NPC.Enemy.Troll;
 import ib.fatninja.base.acive.NPC.Enemy.Woolf;
 import ib.fatninja.base.map.MapBase;
-import ib.fatninja.ui.TouchHandler;
 
 public class Map0_0 extends MapBase{
 
