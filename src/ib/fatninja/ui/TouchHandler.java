@@ -2,6 +2,8 @@ package ib.fatninja.ui;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import android.util.Log;
 import ib.fatninja.engine.ui.events.ITouchable;
 
 public class TouchHandler {
@@ -9,7 +11,7 @@ public class TouchHandler {
 	private List<ITouchable> touchableElements = new ArrayList<ITouchable>();
 	
 	public void clear(){
-		touchableElements = new ArrayList<ITouchable>();	
+		touchableElements.clear();	
 	}
 	
 	public void addElement(ITouchable element){
@@ -30,7 +32,8 @@ public class TouchHandler {
 		ITouchable selectedElement = null;
 		for(int i =0;i < touchableElements.size();i++){
 			el = touchableElements.get(i);
-			if(touchX >= el.getX() && touchX <= el.getX() + el.getWidth() && touchY >= el.getY() && touchY <= el.getY() + el.getHeight()){
+			if(touchX >= el.getX() && touchX <= el.getX() + el.getWidth() 
+					&& touchY >= el.getY() && touchY <= el.getY() + el.getHeight()){
 				if(selectedElement == null)
 					selectedElement = el;
 				else if(selectedElement.getHeight() + selectedElement.getWidth() > el.getWidth() + el.getHeight())
@@ -45,7 +48,7 @@ public class TouchHandler {
 					selectedElement.onTouchClick(touchX, touchY);
 			}
 			catch(Exception e){
-				
+				Log.println(Log.ERROR, "Error", "Error in touch handler:" + e.getMessage() + e.getStackTrace());
 			}
 		}
 	}

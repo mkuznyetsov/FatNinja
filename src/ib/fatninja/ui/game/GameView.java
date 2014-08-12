@@ -46,13 +46,13 @@ public class GameView extends SurfaceView {
 			// Destroy
 			public void surfaceDestroyed(SurfaceHolder holder) {
 				if(gameThread != null)
-					gameThread.onPause();
+					gameThread.setPause();
 				    SoundManager.Instance().stopGameSound();
             }
 
 			public void surfaceCreated(SurfaceHolder holder) {
 				  if(isFirstTime){
-				      CollisionHandler.clearList();
+				      CollisionHandler.clear();
 				      touchHandler.clear();
 					  appleMenu = new Apple(
 							  	 CoordinateManager.Instance().getScorePosition().x - 10
@@ -71,7 +71,7 @@ public class GameView extends SurfaceView {
 					  isFirstTime = false;			
 				  }
 				  else
-					  gameThread.onResume();
+					  gameThread.resume();
 				  SoundManager.Instance().playGameSound();
 			}
 			public void surfaceChanged(SurfaceHolder holder, int format,
@@ -97,7 +97,7 @@ public class GameView extends SurfaceView {
 			currentMap.addApple();
 		}
 		if(ticksPerLevelCounter == 0 || FatNinja.Instance().isDead){
-			gameThread.onPause();
+			gameThread.setPause();
 			ticksPerLevelCounter = ticksPerLevel;
 		    appleDelayCounter = 0;
 			Button gameOver = new Button(
@@ -118,7 +118,7 @@ public class GameView extends SurfaceView {
 					, touchHandler){				
 				@Override
 				public void onTouchClick(float x, float y){
-					CollisionHandler.clearList();
+					CollisionHandler.clear();
 					touchHandler.clear();
 				    currentMap.clearItems();
 					if(FatNinja.Instance().isDead){
@@ -127,7 +127,7 @@ public class GameView extends SurfaceView {
 					}
 					else
 						currentMap = new Map0_1();
-					gameThread.onResume();
+					gameThread.resume();
 					touchHandler.addElement(currentMap);
 					touchHandler.addElement(joyStick);
 				}

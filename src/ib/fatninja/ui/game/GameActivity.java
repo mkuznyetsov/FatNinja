@@ -28,7 +28,7 @@ public class GameActivity extends Activity{
 	
 	@Override
 	public void onBackPressed() {
-		gameView.gameThread.onResume();
+		gameView.gameThread.resume();
 		gameView.gameThread.setRunning(false);
 		gameView.gameThread = null;
 		super.onBackPressed();

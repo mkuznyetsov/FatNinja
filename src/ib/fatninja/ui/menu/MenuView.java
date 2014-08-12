@@ -47,13 +47,13 @@ public class MenuView extends SurfaceView {
 			public void surfaceDestroyed(SurfaceHolder holder) {
 				System.out.println("ON Destroyed");
 				if(menuLoopThread != null)
-					menuLoopThread.onPause();
+					menuLoopThread.setPause();
 				SoundManager.Instance().stopMenuSound();
 			}
 
 			// Start first
 			public void surfaceCreated(SurfaceHolder holder) {
-				menuLoopThread.onResume();
+				menuLoopThread.resume();
 				setMovieCheckboxButton();
 				setJoystickCheckboxButton();
 				setSoundCheckboxButton();
@@ -104,7 +104,7 @@ public class MenuView extends SurfaceView {
 			@Override
 			public void onTouchClick(float x, float y) {
 				menuLoopThread.setRunning(false);
-				menuLoopThread.onResume();
+				menuLoopThread.resume();
 				menuLoopThread = null;
 				SettingsManager.Instance().getActivity().finish();
 			}

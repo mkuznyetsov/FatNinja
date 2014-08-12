@@ -58,13 +58,13 @@ public abstract class LoopThread extends Thread {
 		}
 	}
 	
-    public void onPause() {
+    public void setPause() {
         synchronized (pauseLock) {
             paused = true;
         }
     }
 
-    public void onResume() {
+    public void setResume() {
         synchronized (pauseLock) {
         	paused = false;
         	pauseLock.notifyAll();

@@ -107,7 +107,7 @@ public abstract class MapBase implements ITouchable{
 		ICollisionable colItem = (ICollisionable.class.cast(item));
 		if(colItem != null && addToCollisionHandler)
 		{
-			CollisionHandler.addCollisionableElement(colItem);
+			CollisionHandler.add(colItem);
 		}
 	}
 
@@ -184,7 +184,7 @@ public abstract class MapBase implements ITouchable{
 	private void initApples(){
 		for(int i = 0; i < apples.length; i++){
 			apples[i] = new Apple(-100, -100);
-			CollisionHandler.addCollisionableElement(apples[i]);
+			CollisionHandler.add(apples[i]);
 		}
 	}
 	
@@ -206,7 +206,7 @@ public abstract class MapBase implements ITouchable{
         evil.setMovement(getMovement(rndMovement));
 
         evils.add(evil);
-        CollisionHandler.addCollisionableElement(evil);
+        CollisionHandler.add(evil);
     }
     
 	private eMovement getMovement(int number){
