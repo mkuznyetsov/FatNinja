@@ -35,7 +35,7 @@ public class JoyPad4Direction extends ABaseDrawableObj implements ITouchable{
 	
 	private eMovement movement;
 	
-	public JoyPad4Direction(float x, float y, float width, float height, TouchHandler touchHandler){
+	public JoyPad4Direction(float x, float y, float width, float height){
 		movement = eMovement.NONE;
 		setX(x);
 		setY(y);
@@ -87,8 +87,6 @@ public class JoyPad4Direction extends ABaseDrawableObj implements ITouchable{
         
 
         buttonUp.close();
-		
-        touchHandler.addElement(this);
 	}
 
 	public void onDrawObj(Canvas c) {		

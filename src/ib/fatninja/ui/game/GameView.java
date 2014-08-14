@@ -58,13 +58,15 @@ public class GameView extends SurfaceView {
 							  	 CoordinateManager.Instance().getScorePosition().x - 10
 								,CoordinateManager.Instance().getScorePosition().y - CoordinateManager.Instance().getSpriteEdge() + 10);
 					  currentMap = new Map0_0();
-					  if(SettingsManager.Instance().isJoyStickEnabled)
+					  if(SettingsManager.Instance().isJoyStickEnabled){
 						  joyStick = new JoyPad4Direction(
-							  CoordinateManager.Instance().getJoystickPosition().x
-							, CoordinateManager.Instance().getJoystickPosition().y
-							, ResourceManager.Instance().getJoyStick().getWidth()
-							, ResourceManager.Instance().getJoyStick().getHeight()
-							, touchHandler);
+								  CoordinateManager.Instance().getJoystickPosition().x
+								, CoordinateManager.Instance().getJoystickPosition().y
+								, ResourceManager.Instance().getJoyStick().getWidth()
+								, ResourceManager.Instance().getJoyStick().getHeight());
+						  touchHandler.addElement(joyStick);
+						  
+					  }
 					  touchHandler.addElement(currentMap);
 					  gameThread.setRunning(true);
 			          gameThread.start();	
@@ -128,6 +130,8 @@ public class GameView extends SurfaceView {
 					else
 						currentMap = new Map0_1();
 					gameThread.setResume();
+					if(SettingsManager.Instance().isJoyStickEnabled)
+						touchHandler.addElement(joyStick);
 					touchHandler.addElement(currentMap);
 				}
 			};
