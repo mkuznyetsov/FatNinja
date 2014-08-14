@@ -17,9 +17,6 @@ public abstract class BaseEnemy extends BaseActiveObj{
 	public void onDrawObj(Canvas c) {
 		if(waitDelay()){
 			randomMove();
-			currentFrame++;
-			if(currentFrame == bmpCols)
-				currentFrame = 0;
 		}
 		checkEndOfMap(c);		
 		c.drawBitmap(bitmapList.get(movement).get(currentFrame), x, y, null);

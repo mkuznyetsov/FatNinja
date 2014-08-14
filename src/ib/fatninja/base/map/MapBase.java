@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.base.acive.BaseActiveObj;
+import ib.fatninja.base.acive.NPC.Enemy.EnemySpawnBuilder;
 import ib.fatninja.base.acive.Player.FatNinja;
 import ib.fatninja.base.terra.Apple;
 import ib.fatninja.base.terra.Bush;
@@ -21,7 +22,6 @@ import ib.fatninja.engine.ui.IDrawable;
 import ib.fatninja.engine.ui.events.ITouchable;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.SettingsManager;
-import ib.fatninja.ui.TouchHandler;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 
@@ -234,5 +234,5 @@ public abstract class MapBase implements ITouchable{
 	
 	protected abstract void initObjects();
 	protected abstract int getMapId();
-	
+	protected abstract EnemySpawnBuilder getEnemySpawnBuilder();
 }
