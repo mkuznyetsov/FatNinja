@@ -2,6 +2,7 @@ package ib.fatninja.base.acive.NPC.Enemy.Builder;
 
 import android.graphics.Point;
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
+import ib.fatninja.base.acive.NPC.Enemy.BaseEnemy;
 import ib.fatninja.managers.CoordinateManager;
 
 public class EnemySpawnInitializer {
@@ -10,10 +11,22 @@ public class EnemySpawnInitializer {
 	private Point realPoint;
 	private eMovement movement;
 	private int spawnDelay;
+	private BaseEnemy enemy;
 	
-	public EnemySpawnInitializer(Point abstractPoint, eMovement movement, int spawnDelay){
+	public EnemySpawnInitializer(BaseEnemy enemy){
+		this(enemy, null, null, 0);
+	}
+	
+	public EnemySpawnInitializer( 
+			BaseEnemy enemy
+			, Point abstractPoint
+			, eMovement movement
+			, int spawnDelay){
+		
+		this.enemy = enemy;
 		this.abstractPoint = abstractPoint; 
-		this.realPoint = new Point(
+		if(abstractPoint != null)
+			this.realPoint = new Point(
 				CoordinateManager.Instance().getTileEdge()* abstractPoint.x
 				, CoordinateManager.Instance().getTileEdge()* abstractPoint.y);
 		this.movement = movement;
@@ -34,6 +47,10 @@ public class EnemySpawnInitializer {
 	
 	public int getSpawnDelay(){
 		return spawnDelay;
+	}
+	
+	public BaseEnemy getEnemy(){
+		return enemy;
 	}
 	
 }

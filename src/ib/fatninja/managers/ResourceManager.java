@@ -253,7 +253,7 @@ public class ResourceManager {
 		if (ninjaList == null){
 			ninjaList = new Bitmap[4];
 			Bitmap ninjaBMP = ResourceManager.Instance().getManuNinjaRes();
-			fillResourceList(ninjaList, ninjaBMP, CoordinateManager.Instance().getTileEdge()*5);		
+			fillResourceList(ninjaList, ninjaBMP, CoordinateManager.Instance().getTileEdge()*7);		
 		}
 		return ninjaList;
 	}

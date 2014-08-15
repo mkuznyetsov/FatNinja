@@ -41,7 +41,7 @@ public class Background implements IDrawable {
 		c.drawColor(Color.WHITE);
 		c.drawBitmap(cloudsBMP, cloudsX, 0, null);
 		c.drawBitmap(forestBMP, 0, 0, null);
-		c.drawBitmap(ninjaList[ninjaFrameIndex], getWidth()/3, getHeight()/2, null);
+		c.drawBitmap(ninjaList[ninjaFrameIndex], getWidth()/4, getHeight()/3, null);
 	}
 	
 	public float getX() {

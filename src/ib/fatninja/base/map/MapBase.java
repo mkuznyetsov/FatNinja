@@ -9,6 +9,7 @@ import java.util.List;
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.base.acive.BaseActiveObj;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilder;
+import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnInitializer;
 import ib.fatninja.base.acive.Player.FatNinja;
 import ib.fatninja.base.terra.Apple;
 import ib.fatninja.base.terra.Bush;
@@ -196,33 +197,11 @@ public abstract class MapBase implements ITouchable{
 		return null;
 	}
 
-    protected void addEvil(BaseActiveObj evil, int i){
-        int rndMovement = (int)(Math.random() * 4);
-        int rndX = (int)(Math.random() * CoordinateManager.Instance().getScreenWidth());
-        int rndY = (int)(Math.random() * CoordinateManager.Instance().getScreenHeight());
-
-        evil.setX(rndX*i);
-        evil.setY(rndY*i);
-        evil.setMovement(getMovement(rndMovement));
-
-        evils.add(evil);
-        CollisionHandler.add(evil);
+    protected void addEvil(EnemySpawnInitializer init){
+    	getEnemySpawnBuilder().build(init);
+        evils.add(init.getEnemy());
+        CollisionHandler.add(init.getEnemy());
     }
-    
-	private eMovement getMovement(int number){
-		switch (number)
-		{
-			case 0:
-				return eMovement.LEFT;
-			case 1:
-				return eMovement.UP;
-			case 2:
-				return eMovement.LEFT;
-			case 3:
-			default:
-				return eMovement.DOWN;
-		}
-	}
     
 	public void beforeDrawObj(){
 		for(int i = 0 ; i< evils.size();i++){

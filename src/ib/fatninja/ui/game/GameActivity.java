@@ -16,8 +16,7 @@ public class GameActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
-				, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		try {
 			gameView = new GameView(this);
 			setContentView(gameView);

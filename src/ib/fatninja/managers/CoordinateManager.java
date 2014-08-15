@@ -18,7 +18,7 @@ public class CoordinateManager {
 	
 	private final int SmallestSideTiles = 10;
 	
-	private final int JoyStickPercentOfSmallestSide = 40;
+	private final int JoyStickPercentOfSmallestSide = 45;
 		
 	private CoordinateManager(){}
 	

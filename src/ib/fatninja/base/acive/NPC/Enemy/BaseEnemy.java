@@ -25,4 +25,5 @@ public abstract class BaseEnemy extends BaseActiveObj{
 	public eObjectType getObjectType() {
 		return eObjectType.ENEMY;
 	}
+	
 }
