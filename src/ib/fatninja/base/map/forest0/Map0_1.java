@@ -1,7 +1,7 @@
 package ib.fatninja.base.map.forest0;
 
 import ib.fatninja.R;
-import ib.fatninja.base.acive.NPC.Enemy.EnemySpawnBuilder;
+import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilder;
 import ib.fatninja.base.map.MapBase;
 
 public class Map0_1 extends MapBase{

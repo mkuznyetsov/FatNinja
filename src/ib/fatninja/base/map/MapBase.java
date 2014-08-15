@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.base.acive.BaseActiveObj;
-import ib.fatninja.base.acive.NPC.Enemy.EnemySpawnBuilder;
+import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilder;
 import ib.fatninja.base.acive.Player.FatNinja;
 import ib.fatninja.base.terra.Apple;
 import ib.fatninja.base.terra.Bush;

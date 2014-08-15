@@ -1,4 +1,4 @@
-package ib.fatninja.base.acive.NPC.Enemy;
+package ib.fatninja.base.acive.NPC.Enemy.Builder;
 
 import android.graphics.Point;
 import ib.fatninja.base.AMovableSpriteObject.eMovement;
