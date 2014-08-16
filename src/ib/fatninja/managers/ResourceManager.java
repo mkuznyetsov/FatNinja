@@ -33,7 +33,7 @@ public class ResourceManager {
 
 	private Bitmap MenuNinjaResource ;
 
-	private Bitmap NewGameResource ;
+	private Bitmap newGameResource;
 	
 	private Bitmap GameOverResource;
 	
@@ -94,9 +94,9 @@ public class ResourceManager {
 	}
 
 	public Bitmap getNewGameRes() {
-		if( NewGameResource == null)
-			NewGameResource = BitmapFactory.decodeResource( SettingsManager.Instance().getActivity().getResources(), R.drawable.m_new_game);
-		return NewGameResource;
+		if( newGameResource == null)
+			newGameResource = BitmapFactory.decodeResource( SettingsManager.Instance().getActivity().getResources(), R.drawable.m_new_game);
+		return newGameResource;
 	}
 	
 	public Bitmap getGameOverRes(){

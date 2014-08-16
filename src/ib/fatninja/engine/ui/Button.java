@@ -1,6 +1,7 @@
 package ib.fatninja.engine.ui;
 
 import ib.fatninja.engine.ui.events.ITouchable;
+import ib.fatninja.managers.StyleManager;
 import ib.fatninja.ui.TouchHandler;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -11,14 +12,20 @@ public class Button extends ABaseDrawableObj implements ITouchable{
 
 	private Paint buttonPaint = null;
 	private Bitmap buttonBitmap = null;
+	private String text = null;
 	protected RectF position = null;
 	
 	public Button( float x, float y, float width, float height, TouchHandler touchHandler){
-		this(x, y, width, height, null, null, touchHandler);
+		this(x, y, width, height, (Bitmap)null, null, touchHandler);
 	}
 	
 	public Button( float x, float y, float width, float height, Bitmap bmp, TouchHandler touchHandler){
 		this( x, y, width, height, bmp, null, touchHandler);
+	}
+
+    public Button( float x, float y, float width, float height, String txt, Paint paint, TouchHandler touchHandler){
+		this( x, y, width, height, (Bitmap)null, paint, touchHandler);
+        this.text = txt;
 	}
 	
 	public Button( float x, float y, float width, float height, Bitmap bmp, Paint paint, TouchHandler touchHandler){
@@ -45,6 +52,10 @@ public class Button extends ABaseDrawableObj implements ITouchable{
 	
 	@Override
 	public void onDrawObj(Canvas c){
-		c.drawBitmap(buttonBitmap, null, position, buttonPaint);
+		if (buttonBitmap == null) {
+			c.drawText(text, x, y, buttonPaint);
+		}else{
+			c.drawBitmap(buttonBitmap, null, position, buttonPaint);
+		}
 	}
 }

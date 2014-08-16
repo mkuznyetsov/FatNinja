@@ -102,21 +102,16 @@ public class GameView extends SurfaceView {
 			gameThread.setPause();
 			ticksPerLevelCounter = ticksPerLevel;
 		    appleDelayCounter = 0;
+
 			Button gameOver = new Button(
-					CoordinateManager.Instance().getGameOverPosition().x
-					,CoordinateManager.Instance().getGameOverPosition().y
-					, 400
-					, 35
-					, ResourceManager.Instance().getGameOverRes()
-					, touchHandler);
-			Button newGame = new Button(
-					 CoordinateManager.Instance().getNewGamePosition().x
-					, CoordinateManager.Instance().getNewGamePosition().y
+					 CoordinateManager.Instance().getGameOverPosition().x
+					, CoordinateManager.Instance().getGameOverPosition().y
 					, 400
 					, 35
 					, FatNinja.Instance().isDead 
-						? ResourceManager.Instance().getNewGameTouchedRes()
-						: ResourceManager.Instance().getNewGameRes()
+						? "GAME OVER"
+						: "NEXT LEVEL"
+					, StyleManager.Instance().getGameOverFontStyle()
 					, touchHandler){				
 				@Override
 				public void onTouchClick(float x, float y){
@@ -137,7 +132,6 @@ public class GameView extends SurfaceView {
 			};
 			c.drawRGB(0, 0, 0);
 			gameOver.onDrawObj(c);
-			newGame.onDrawObj(c);
 			return;			
 		}
 
@@ -152,10 +146,12 @@ public class GameView extends SurfaceView {
 			joyStick.onDrawObj(c);
 		c.drawText(String.valueOf(FatNinja.Instance().getApples())
 				, CoordinateManager.Instance().getScorePosition().x + CoordinateManager.Instance().getSpriteEdge()
-				, CoordinateManager.Instance().getScorePosition().y, StyleManager.Instance().getScoreFontStyle());
+				, CoordinateManager.Instance().getScorePosition().y
+				, StyleManager.Instance().getScoreFontStyle());
 		c.drawText(String.valueOf(ticksPerLevelCounter)
 				, CoordinateManager.Instance().getScorePosition().x
-				, CoordinateManager.Instance().getScorePosition().y + CoordinateManager.Instance().getSpriteEdge(), StyleManager.Instance().getScoreFontStyle());
+				, CoordinateManager.Instance().getScorePosition().y + CoordinateManager.Instance().getSpriteEdge()
+				, StyleManager.Instance().getScoreFontStyle());
 	}
 	
 	@Override

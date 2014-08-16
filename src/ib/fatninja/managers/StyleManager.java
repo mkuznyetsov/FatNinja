@@ -37,7 +37,7 @@ public class StyleManager {
 			Typeface font = Typeface.createFromAsset(
 					SettingsManager.Instance().getActivity().getAssets(), "fonts/BITFONT.ttf");  
 			gameOverFontStyle.setTypeface(font);
-			gameOverFontStyle.setTextSize(80);
+			gameOverFontStyle.setTextSize(50);
 			gameOverFontStyle.setARGB(255, 200, 55, 30);
 		}
 		return gameOverFontStyle;		
