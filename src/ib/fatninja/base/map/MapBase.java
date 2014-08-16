@@ -113,7 +113,7 @@ public abstract class MapBase implements ITouchable{
 	}
 
 	public void onTouchClick(float x, float y) {
-		if(!SettingsManager.Instance().isJoyStickEnabled)
+		if(!SettingsManager.Instance().isJoyStickEnabled())
 			FatNinja.Instance().coordinator(x, y);
 	}	
 

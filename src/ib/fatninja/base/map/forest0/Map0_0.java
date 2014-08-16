@@ -33,8 +33,8 @@ public class Map0_0 extends MapBase {
 
 	@Override
 	protected EnemySpawnBuilder getEnemySpawnBuilder() {
-//		return EnemySpawnBuilderBorder.getInstance();
-		return EnemySpawnBuilderRandom.getInstance();
+		return EnemySpawnBuilderBorder.getInstance();
+	//	return EnemySpawnBuilderRandom.getInstance();
 	}
 	
 }

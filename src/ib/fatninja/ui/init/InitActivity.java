@@ -1,23 +1,27 @@
 package ib.fatninja.ui.init;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
+import ib.fatninja.managers.CoordinateManager;
+import ib.fatninja.managers.SettingsManager;
+import ib.fatninja.ui.BaseActivity;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.Display;
+import android.view.View;
 
-public class InitActivity extends Activity{
-	
-	private InitView initView ;
+public class InitActivity extends BaseActivity{
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
-				, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		initView = new InitView(this);
-		setContentView(initView);
+		SettingsManager.Instance().setMainActivity(this);
+		Display display = getWindowManager().getDefaultDisplay();
+		int x = display.getWidth();
+		int y = display.getHeight();
+		CoordinateManager.Instance().setScreenWidth(Math.max(x, y));
+		CoordinateManager.Instance().setScreenHeight(Math.min(x, y));
+		super.onCreate(savedInstanceState);	
+	}
+
+	@Override
+	protected View getView() {
+		return new InitView(this);
 	}
 }

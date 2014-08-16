@@ -1,6 +1,7 @@
 package ib.fatninja.ui.menu;
 
 import ib.fatninja.engine.ui.Button;
+import ib.fatninja.engine.ui.GridLayout;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
@@ -11,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -19,10 +22,10 @@ public class MenuView extends SurfaceView {
 
 	private MenuLoopThread menuLoopThread;
 	private TouchHandler touchHandler;
-
+	private GridLayout gridLayout;
+	
 	private Background bg;
 	private Button startButton;
-	private Button exitButton;
 
 	private Button movieButton;
 	private Button joyStickButton;
@@ -33,11 +36,13 @@ public class MenuView extends SurfaceView {
 	public MenuView(Context context) {
 		super(context);
 		THIS = this;
+		if(gridLayout == null)
+			gridLayout = new GridLayout(14, 30);		
 		if(touchHandler == null)
 			touchHandler = new TouchHandler();
 		if(menuLoopThread == null){
 			menuLoopThread = new MenuLoopThread(this);
-			InitObjects();
+			initObjects();
 			menuLoopThread.setRunning(true);
 			menuLoopThread.start();			
 		}
@@ -78,16 +83,16 @@ public class MenuView extends SurfaceView {
 	public void draw(Canvas c){
 		bg.onDrawObj(c);
 		startButton.onDrawObj(c);
-		exitButton.onDrawObj(c);
 		joyStickButton.onDrawObj(c);
 		movieButton.onDrawObj(c);
 		soundButton.onDrawObj(c);
 	}
 	
-	private void InitObjects(){
+	private void initObjects(){
 		touchHandler.clear();
 		bg = new Background();
-		startButton = new Button(30, 30, 270, 35
+		PointF position = gridLayout.getPosition(1, 1);
+		startButton = new Button(position.x, position.y, 270, 35
 				, ResourceManager.Instance().getNewGameRes()
 				, touchHandler) {
 			@Override
@@ -96,24 +101,12 @@ public class MenuView extends SurfaceView {
 				SettingsManager.Instance().getActivity().startActivity(myIntent);  
 			}
 		};
-
-		exitButton = new Button(CoordinateManager.Instance().getScreenWidth() - 170
-				, CoordinateManager.Instance().getScreenHeight() - 100, 140, 35
-				, ResourceManager.Instance().getExitRes()
-				, touchHandler) {
-			@Override
-			public void onTouchClick(float x, float y) {
-				menuLoopThread.setRunning(false);
-				menuLoopThread.setResume();
-				menuLoopThread = null;
-				SettingsManager.Instance().getActivity().finish();
-			}
-		};
+		
 		movieButton = new Button(CoordinateManager.Instance().getScreenWidth() - 100, 40, 50, 50
 				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
-				SettingsManager.Instance().isMovieEnabled = !SettingsManager.Instance().isMovieEnabled;
+				SettingsManager.Instance().setMovieEnabled(!SettingsManager.Instance().isMovieEnabled());
 				setMovieCheckboxButton();
 			}
 		};
@@ -123,7 +116,7 @@ public class MenuView extends SurfaceView {
 				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
-				SettingsManager.Instance().isJoyStickEnabled = !SettingsManager.Instance().isJoyStickEnabled;
+				SettingsManager.Instance().setJoyStickEnabled(!SettingsManager.Instance().isJoyStickEnabled());
 				setJoystickCheckboxButton();
 			}
 		};
@@ -133,9 +126,9 @@ public class MenuView extends SurfaceView {
 				, touchHandler) {
 			@Override
 			public void onTouchClick(float x, float y) {
-				SettingsManager.Instance().isSoundEnabled = !SettingsManager.Instance().isSoundEnabled;
+				SettingsManager.Instance().setSoundEnabled(!SettingsManager.Instance().isSoundEnabled());
 				setSoundCheckboxButton();
-				if(SettingsManager.Instance().isSoundEnabled)
+				if(SettingsManager.Instance().isSoundEnabled())
 					SoundManager.Instance().playMenuSound();
 				else
 					SoundManager.Instance().stopMenuSound();
@@ -144,21 +137,21 @@ public class MenuView extends SurfaceView {
 		setSoundCheckboxButton();
 		
 	}
-	
+
 	private void setMovieCheckboxButton(){
-		setCheckboxButton(movieButton, SettingsManager.Instance().isMovieEnabled
+		setCheckboxButton(movieButton, SettingsManager.Instance().isMovieEnabled()
 				, ResourceManager.Instance().getMovieOnRes()
 				, ResourceManager.Instance().getMovieOffRes());
 	}
 
 	private void setJoystickCheckboxButton(){
-		setCheckboxButton(joyStickButton, SettingsManager.Instance().isJoyStickEnabled
+		setCheckboxButton(joyStickButton, SettingsManager.Instance().isJoyStickEnabled()
 				, ResourceManager.Instance().getJoyStickOnRes()
 				, ResourceManager.Instance().getJoyStickOffRes());
 	}
 
 	private void setSoundCheckboxButton(){
-		setCheckboxButton(soundButton, SettingsManager.Instance().isSoundEnabled
+		setCheckboxButton(soundButton, SettingsManager.Instance().isSoundEnabled()
 				, ResourceManager.Instance().getSoundOnRes(), ResourceManager.Instance().getSoundOffRes());
 	}
 	

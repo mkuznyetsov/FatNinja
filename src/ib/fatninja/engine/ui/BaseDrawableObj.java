@@ -2,7 +2,7 @@ package ib.fatninja.engine.ui;
 
 import android.graphics.Canvas;
 
-public abstract class ABaseDrawableObj implements IDrawable{
+public abstract class BaseDrawableObj implements IDrawable{
 	
 	protected float x = 0;
 	protected float y = 0;

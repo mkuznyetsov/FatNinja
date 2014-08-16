@@ -45,7 +45,7 @@ public class SoundManager {
 	}
 	
 	public void playMenuSound(){
-		if(SettingsManager.Instance().isSoundEnabled && !mpMenu.isPlaying())
+		if(SettingsManager.Instance().isSoundEnabled() && !mpMenu.isPlaying())
 			mpMenu.start();
 	}
 	
@@ -55,7 +55,7 @@ public class SoundManager {
 	}
 		
 	public void playGameSound(){
-		if(SettingsManager.Instance().isSoundEnabled && !mpGame.isPlaying())
+		if(SettingsManager.Instance().isSoundEnabled() && !mpGame.isPlaying())
 			mpGame.start();
 	}
 	

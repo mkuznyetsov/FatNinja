@@ -1,23 +1,12 @@
 package ib.fatninja.ui.levelchoose;
 
-import android.app.Activity;
-import android.content.pm.ActivityInfo;
-import android.os.Bundle;
-import android.view.Window;
+import ib.fatninja.ui.BaseActivity;
+import android.view.View;
 
-/**
- * created ate: 1/26/14
- * created time: 1:08 PM
- * by ndakota
- */
-public class LevelChooseActivity extends Activity {
+public class LevelChooseActivity extends BaseActivity {
 	
-	private int x;
-	
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(new LevelChooseView(this));
-    }
+	@Override
+	protected View getView() {
+		return new LevelChooseView(this);
+	}
 }

@@ -5,13 +5,12 @@ android:versionCode="1"
 android:versionName="1.0" >
 
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="15"/>
-
     <application
             android:allowBackup="false"
             android:icon="@drawable/icon"
             android:label="@string/app_name" >
         <activity
-                android:name="ib.fatninja.ui.menu.MenuActivity"
+                android:name="ib.fatninja.ui.init.InitActivity"
                 android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +18,11 @@ android:versionName="1.0" >
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="ib.fatninja.ui.menu.MenuActivity"></activity>
         <activity android:name="ib.fatninja.ui.game.GameActivity"></activity>
-
+        <activity android:name="ib.fatninja.ui.levelchoose.LevelChooseActivity"></activity>
+        
+        
     </application>
 
 </manifest>

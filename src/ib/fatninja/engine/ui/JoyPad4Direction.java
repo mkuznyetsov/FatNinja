@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 
-public class JoyPad4Direction extends ABaseDrawableObj implements ITouchable{
+public class JoyPad4Direction extends BaseDrawableObj implements ITouchable{
 	
 	private float cx = 0.0f;
 	private float cy = 0.0f;

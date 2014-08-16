@@ -15,7 +15,7 @@ public class GameLoopThread extends LoopThread {
 
 	@Override
 	public void onTick(Canvas c){
-		if(SettingsManager.Instance().isMovieEnabled)
+		if(SettingsManager.Instance().isMovieEnabled())
 		{
 			try {
 				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(0), 1500);
@@ -33,7 +33,7 @@ public class GameLoopThread extends LoopThread {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			SettingsManager.Instance().isMovieEnabled = false;
+			SettingsManager.Instance().setMovieEnabled(false);
 		} 
 	}
 	

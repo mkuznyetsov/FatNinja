@@ -41,6 +41,13 @@ public class GameView extends SurfaceView {
 		super(context);
 		touchHandler = new TouchHandler();
 		gameThread = new GameLoopThread(this);
+		if(SettingsManager.Instance().isJoyStickEnabled()){
+		  joyStick = new JoyPad4Direction(
+				  CoordinateManager.Instance().getJoystickPosition().x
+				, CoordinateManager.Instance().getJoystickPosition().y
+				, ResourceManager.Instance().getJoyStick().getWidth()
+				, ResourceManager.Instance().getJoyStick().getHeight());
+		}
 		holder = getHolder();		
 		holder.addCallback(new SurfaceHolder.Callback() {
 			// Destroy
@@ -58,16 +65,9 @@ public class GameView extends SurfaceView {
 							  	 CoordinateManager.Instance().getScorePosition().x - 10
 								,CoordinateManager.Instance().getScorePosition().y - CoordinateManager.Instance().getSpriteEdge() + 10);
 					  currentMap = new Map0_0();
-					  if(SettingsManager.Instance().isJoyStickEnabled){
-						  joyStick = new JoyPad4Direction(
-								  CoordinateManager.Instance().getJoystickPosition().x
-								, CoordinateManager.Instance().getJoystickPosition().y
-								, ResourceManager.Instance().getJoyStick().getWidth()
-								, ResourceManager.Instance().getJoyStick().getHeight());
-						  touchHandler.addElement(joyStick);
-						  
-					  }
 					  touchHandler.addElement(currentMap);
+					  if(SettingsManager.Instance().isJoyStickEnabled())
+						  touchHandler.addElement(joyStick);
 					  gameThread.setRunning(true);
 			          gameThread.start();	
 					  isFirstTime = false;			
@@ -84,7 +84,7 @@ public class GameView extends SurfaceView {
 	
 	@Override
 	public void draw(Canvas c){
-		if(SettingsManager.Instance().isJoyStickEnabled){
+		if(SettingsManager.Instance().isJoyStickEnabled()){
 			eMovement joyStickMovement = joyStick.getMovement();
 			if(joyStickMovement != eMovement.NONE){				
 				FatNinja.Instance().setMovement(joyStickMovement);
@@ -115,19 +115,7 @@ public class GameView extends SurfaceView {
 					, touchHandler){				
 				@Override
 				public void onTouchClick(float x, float y){
-					CollisionHandler.clear();
-					touchHandler.clear();
-				    currentMap.clearItems();
-					if(FatNinja.Instance().isDead){
-						FatNinja.Instance().clear();
-						currentMap = new Map0_0();
-					}
-					else
-						currentMap = new Map0_1();
-					gameThread.setResume();
-					if(SettingsManager.Instance().isJoyStickEnabled)
-						touchHandler.addElement(joyStick);
-					touchHandler.addElement(currentMap);
+					initObjects();	
 				}
 			};
 			c.drawRGB(0, 0, 0);
@@ -142,7 +130,7 @@ public class GameView extends SurfaceView {
 		currentMap.onDrawObj(c);				
 		appleMenu.onDrawObj(c);
 				
-		if(SettingsManager.Instance().isJoyStickEnabled)
+		if(SettingsManager.Instance().isJoyStickEnabled())
 			joyStick.onDrawObj(c);
 		c.drawText(String.valueOf(FatNinja.Instance().getApples())
 				, CoordinateManager.Instance().getScorePosition().x + CoordinateManager.Instance().getSpriteEdge()
@@ -162,5 +150,20 @@ public class GameView extends SurfaceView {
 			touchHandler.touchRelease(event.getX(), event.getY());
 		return true;
 	}	
+	
+	private void initObjects(){
+		CollisionHandler.clear();
+		touchHandler.clear();
+		if(FatNinja.Instance().isDead){
+			FatNinja.Instance().clear();
+			currentMap = new Map0_0();
+		}
+		else
+			currentMap = new Map0_1();
+		if(SettingsManager.Instance().isJoyStickEnabled())
+			touchHandler.addElement(joyStick);
+		touchHandler.addElement(currentMap);
+		gameThread.setResume();
+	}
 		
 }

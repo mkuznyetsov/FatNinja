@@ -8,7 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-public class Button extends ABaseDrawableObj implements ITouchable{
+public class Button extends BaseDrawableObj implements ITouchable{
 
 	private Paint buttonPaint = null;
 	private Bitmap buttonBitmap = null;
