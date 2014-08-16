@@ -18,6 +18,7 @@ import ib.fatninja.managers.StyleManager;
 import ib.fatninja.ui.TouchHandler;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -102,6 +103,7 @@ public class GameView extends SurfaceView {
 			gameThread.setPause();
 			ticksPerLevelCounter = ticksPerLevel;
 		    appleDelayCounter = 0;
+		    touchHandler.clear();
 
 			Button gameOver = new Button(
 					 CoordinateManager.Instance().getGameOverPosition().x

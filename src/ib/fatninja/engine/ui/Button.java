@@ -25,7 +25,8 @@ public class Button extends BaseDrawableObj implements ITouchable{
 
     public Button( float x, float y, float width, float height, String txt, Paint paint, TouchHandler touchHandler){
 		this( x, y, width, height, (Bitmap)null, paint, touchHandler);
-        this.text = txt;
+		this.text = txt;
+		this.y -= height;
 	}
 	
 	public Button( float x, float y, float width, float height, Bitmap bmp, Paint paint, TouchHandler touchHandler){
@@ -53,7 +54,7 @@ public class Button extends BaseDrawableObj implements ITouchable{
 	@Override
 	public void onDrawObj(Canvas c){
 		if (buttonBitmap == null) {
-			c.drawText(text, x, y, buttonPaint);
+			c.drawText(text, position.left, position.top, buttonPaint);
 		}else{
 			c.drawBitmap(buttonBitmap, null, position, buttonPaint);
 		}
