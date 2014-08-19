@@ -1,22 +1,22 @@
 package ib.fatninja.base.weapon;
 
-import ib.fatninja.base.AMovableSpriteObject;
-import ib.fatninja.base.weapon.unit.AAmmo;
+import ib.fatninja.base.weapon.unit.BaseAmmo;
+import ib.fatninja.engine.draw.MovableSpriteObject;
 
-public class RangeWeapon extends AWeapon{
+public class RangeWeapon extends BaseWeapon{
 
 	protected int ReloadingInTicks = 5;
 	protected int Damage = 10;
 	
-	public AAmmo[] AmmoList = null;
+	public BaseAmmo[] AmmoList = null;
 	
-	public RangeWeapon(AMovableSpriteObject theOwner) {
+	public RangeWeapon(MovableSpriteObject theOwner) {
 		super(theOwner);
 		
 	}
 	
 	protected void setAmmoCapacity(int ammoCapacity){
-		AmmoList = new AAmmo[ammoCapacity];
+		AmmoList = new BaseAmmo[ammoCapacity];
 	}
 	
 	public int getAmmoCapacity(){

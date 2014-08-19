@@ -1,7 +1,7 @@
 package ib.fatninja.base.acive.Player;
 
 import ib.fatninja.base.acive.BaseActiveObj;
-import ib.fatninja.base.weapon.AWeapon;
+import ib.fatninja.base.weapon.BaseWeapon;
 import ib.fatninja.base.weapon.type.Blaster;
 import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.collision.ICollisionable;
@@ -12,7 +12,7 @@ import android.graphics.Canvas;
 
 public class FatNinja extends BaseActiveObj implements ITouchable{
 
-	private AWeapon selectedWeapon ;
+	private BaseWeapon selectedWeapon ;
 	private double distance_x;
 	private double distance_y;
 	public boolean isDead ;
@@ -93,57 +93,6 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 		selectedWeapon.doAction();
 	}
 	
-	public void coordinator(float click_x, float click_y) {
-		
-		distance_x = Math.abs(x - click_x);			
-		distance_y = Math.abs(y - click_y);
-
-//		if (distance_x > distance_y) {
-			if (x <= click_x){
-				switch (movement) {
-				case RIGHT:
-					movement = eMovement.DOWN;
-					break;
-				case DOWN:
-					movement = eMovement.LEFT;
-					break;				
-				case LEFT:
-					movement = eMovement.UP;
-					break;
-				case UP:
-					movement = eMovement.RIGHT;
-					break;
-				default:
-					break;
-				}				
-			}
-			else{
-				switch (movement) {
-				case RIGHT:
-					movement = eMovement.UP;
-					break;
-				case DOWN:
-					movement = eMovement.RIGHT;
-					break;				
-				case LEFT:
-					movement = eMovement.DOWN;
-					break;
-				case UP:
-					movement = eMovement.LEFT;
-					break;
-				default:
-					break;
-				}
-			}
-//		} 
-//		else {
-//			if (y >= click_y)
-//				movement = eMovement.UP;
-//			else
-//				movement = eMovement.DOWN;
-//		}
-	}
-
 	public void onTouchClick(float x, float y) {
 	}
 	

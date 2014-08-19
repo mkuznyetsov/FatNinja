@@ -1,10 +1,9 @@
-package ib.fatninja.base;
+package ib.fatninja.engine.draw;
 
 import ib.fatninja.engine.collision.ICollisionable;
-import ib.fatninja.engine.ui.IDrawable;
 import android.graphics.Bitmap;
 
-public abstract class ASpriteObject implements IDrawable, ICollisionable{
+public abstract class SpriteObject implements IDrawable, ICollisionable{
 
 	public enum eObjectType{ PLAYER
 		, ENEMY, SLOW, BACKGROUND, BLOCK
@@ -25,15 +24,15 @@ public abstract class ASpriteObject implements IDrawable, ICollisionable{
 	
 	private boolean isCollisionDetected;
 		
-	protected ASpriteObject (){
+	protected SpriteObject (){
 		
 	}
 	
-	protected ASpriteObject(Bitmap bmp){
+	protected SpriteObject(Bitmap bmp){
 		this(bmp,1,1);
 	}
 	
-	protected ASpriteObject(Bitmap bmp, int bmpCols, int bmpRows){
+	protected SpriteObject(Bitmap bmp, int bmpCols, int bmpRows){
 		this.bmp = bmp;
 		this.bmpCols = bmpCols;
 		this.bmpRows = bmpRows;

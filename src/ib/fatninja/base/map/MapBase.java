@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.base.acive.BaseActiveObj;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilder;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnInitializer;
@@ -19,14 +18,13 @@ import ib.fatninja.base.terra.Hole;
 import ib.fatninja.base.terra.Tree;
 import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.collision.ICollisionable;
-import ib.fatninja.engine.ui.IDrawable;
-import ib.fatninja.engine.ui.events.ITouchable;
+import ib.fatninja.engine.draw.IDrawable;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.SettingsManager;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 
-public abstract class MapBase implements ITouchable{
+public abstract class MapBase{
 
 	protected List<BaseActiveObj> evils = new ArrayList<BaseActiveObj>();
 	
@@ -111,14 +109,6 @@ public abstract class MapBase implements ITouchable{
 			CollisionHandler.add(colItem);
 		}
 	}
-
-	public void onTouchClick(float x, float y) {
-		if(!SettingsManager.Instance().isJoyStickEnabled())
-			FatNinja.Instance().coordinator(x, y);
-	}	
-
-	public void onTouchRelease(float x, float y) {
-	}	
 	
 	@SuppressLint("DrawAllocation")
 	public void onDrawObj(Canvas c) {

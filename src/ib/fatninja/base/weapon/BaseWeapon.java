@@ -1,14 +1,14 @@
 package ib.fatninja.base.weapon;
 
-import ib.fatninja.base.AMovableSpriteObject;
+import ib.fatninja.engine.draw.MovableSpriteObject;
 import android.graphics.Canvas;
 
 
-public abstract class AWeapon {
-	protected AMovableSpriteObject theOwner;
+public abstract class BaseWeapon {
+	protected MovableSpriteObject theOwner;
 	protected int Damage = 0;
 	
-	public AWeapon(AMovableSpriteObject theOwner){
+	public BaseWeapon(MovableSpriteObject theOwner){
 		this.theOwner = theOwner;
 	}
 	

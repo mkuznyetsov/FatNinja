@@ -1,4 +1,4 @@
-package ib.fatninja.engine.ui;
+package ib.fatninja.ui.game;
 
 import android.content.Context;
 import android.view.View;

@@ -1,24 +1,21 @@
 package ib.fatninja.ui.game;
 
 import java.io.IOException;
-import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.base.acive.Player.FatNinja;
 import ib.fatninja.base.map.MapBase;
 import ib.fatninja.base.map.forest0.Map0_0;
 import ib.fatninja.base.map.forest0.Map0_1;
 import ib.fatninja.base.terra.Apple;
 import ib.fatninja.engine.collision.CollisionHandler;
-import ib.fatninja.engine.ui.Button;
-import ib.fatninja.engine.ui.JoyPad4Direction;
+import ib.fatninja.engine.movement.IMovementController;
+import ib.fatninja.engine.ui.controls.Button;
+import ib.fatninja.engine.ui.events.TouchHandler;
 import ib.fatninja.managers.CoordinateManager;
-import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
 import ib.fatninja.managers.SoundManager;
 import ib.fatninja.managers.StyleManager;
-import ib.fatninja.ui.TouchHandler;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -27,28 +24,22 @@ public class GameView extends SurfaceView {
 
 	public GameLoopThread gameThread;
 	private TouchHandler touchHandler;
+	private IMovementController movementController;
 	
     private SurfaceHolder holder;
     private MapBase currentMap;
-	private JoyPad4Direction joyStick;
 	private boolean isFirstTime = true;
 	private final int appleDelay = 50;
 	private int appleDelayCounter = 0;
 	private Apple appleMenu;
 	private final int ticksPerLevel = 3000 ;
-	private int ticksPerLevelCounter = ticksPerLevel ;
+	private int ticksPerLevelCounter = ticksPerLevel;
 	
 	public GameView(Context context) throws IOException {
 		super(context);
 		touchHandler = new TouchHandler();
+		movementController = SettingsManager.Instance().getMovementController();		
 		gameThread = new GameLoopThread(this);
-		if(SettingsManager.Instance().isJoyStickEnabled()){
-		  joyStick = new JoyPad4Direction(
-				  CoordinateManager.Instance().getJoystickPosition().x
-				, CoordinateManager.Instance().getJoystickPosition().y
-				, ResourceManager.Instance().getJoyStick().getWidth()
-				, ResourceManager.Instance().getJoyStick().getHeight());
-		}
 		holder = getHolder();		
 		holder.addCallback(new SurfaceHolder.Callback() {
 			// Destroy
@@ -66,9 +57,7 @@ public class GameView extends SurfaceView {
 							  	 CoordinateManager.Instance().getScorePosition().x - 10
 								,CoordinateManager.Instance().getScorePosition().y - CoordinateManager.Instance().getSpriteEdge() + 10);
 					  currentMap = new Map0_0();
-					  touchHandler.addElement(currentMap);
-					  if(SettingsManager.Instance().isJoyStickEnabled())
-						  touchHandler.addElement(joyStick);
+					  touchHandler.addElement(movementController);
 					  gameThread.setRunning(true);
 			          gameThread.start();	
 					  isFirstTime = false;			
@@ -85,13 +74,7 @@ public class GameView extends SurfaceView {
 	
 	@Override
 	public void draw(Canvas c){
-		if(SettingsManager.Instance().isJoyStickEnabled()){
-			eMovement joyStickMovement = joyStick.getMovement();
-			if(joyStickMovement != eMovement.NONE){				
-				FatNinja.Instance().setMovement(joyStickMovement);
-				joyStick.setDefault();			
-			}
-		}
+		FatNinja.Instance().setMovement(movementController.getMovement());	
 		appleDelayCounter++;
 		ticksPerLevelCounter--;
 
@@ -131,9 +114,7 @@ public class GameView extends SurfaceView {
 		CollisionHandler.findCollision();
 		currentMap.onDrawObj(c);				
 		appleMenu.onDrawObj(c);
-				
-		if(SettingsManager.Instance().isJoyStickEnabled())
-			joyStick.onDrawObj(c);
+		movementController.onDrawObj(c);
 		c.drawText(String.valueOf(FatNinja.Instance().getApples())
 				, CoordinateManager.Instance().getScorePosition().x + CoordinateManager.Instance().getSpriteEdge()
 				, CoordinateManager.Instance().getScorePosition().y
@@ -162,10 +143,7 @@ public class GameView extends SurfaceView {
 		}
 		else
 			currentMap = new Map0_1();
-		if(SettingsManager.Instance().isJoyStickEnabled())
-			touchHandler.addElement(joyStick);
-		touchHandler.addElement(currentMap);
+		touchHandler.addElement(movementController);
 		gameThread.setResume();
 	}
-		
 }

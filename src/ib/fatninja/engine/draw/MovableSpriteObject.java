@@ -1,8 +1,9 @@
-package ib.fatninja.base;
+package ib.fatninja.engine.draw;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+
 import ib.fatninja.managers.CoordinateManager;
 import android.graphics.Bitmap;
 
@@ -13,7 +14,7 @@ import android.graphics.Bitmap;
  * <p> 3 row = images for move right </p>
  * <p> 4 row = images for move up </p>
  * */
-public abstract class AMovableSpriteObject extends ASpriteObject{
+public abstract class MovableSpriteObject extends SpriteObject{
 	
 	public enum eMovement{
 		LEFT, RIGHT, UP, DOWN, NONE
@@ -39,15 +40,15 @@ public abstract class AMovableSpriteObject extends ASpriteObject{
 	
 	protected Hashtable<eMovement, List<Bitmap>> bitmapList = new Hashtable<eMovement, List<Bitmap>>();
 	
-	protected AMovableSpriteObject (){
+	protected MovableSpriteObject (){
 		
 	}
 	
-	public AMovableSpriteObject (Bitmap bmp) {
+	public MovableSpriteObject (Bitmap bmp) {
 		this(bmp,4,4);
 	}
 	
-	public AMovableSpriteObject (Bitmap bmp, int bmpCols, int bmpRows) {
+	public MovableSpriteObject (Bitmap bmp, int bmpCols, int bmpRows) {
 		super(bmp, bmpCols, bmpRows);
 		InitBitmapList();
 	}	

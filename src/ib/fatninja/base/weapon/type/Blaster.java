@@ -1,13 +1,13 @@
 package ib.fatninja.base.weapon.type;
 
-import ib.fatninja.base.AMovableSpriteObject;
 import ib.fatninja.base.weapon.RangeWeapon;
 import ib.fatninja.base.weapon.unit.BlasterAmmo;
+import ib.fatninja.engine.draw.MovableSpriteObject;
 import android.graphics.Canvas;
 
 public class Blaster extends RangeWeapon{
 		
-	public Blaster(AMovableSpriteObject theOwner) {
+	public Blaster(MovableSpriteObject theOwner) {
 		super(theOwner);
 		init();
 	}

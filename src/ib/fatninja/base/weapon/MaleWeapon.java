@@ -1,10 +1,10 @@
 package ib.fatninja.base.weapon;
 
-import ib.fatninja.base.AMovableSpriteObject;
+import ib.fatninja.engine.draw.MovableSpriteObject;
 
-public class MaleWeapon extends AWeapon{
+public class MaleWeapon extends BaseWeapon{
 
-	public MaleWeapon(AMovableSpriteObject theOwner) {
+	public MaleWeapon(MovableSpriteObject theOwner) {
 		super(theOwner);
 		// TODO Auto-generated constructor stub
 	}

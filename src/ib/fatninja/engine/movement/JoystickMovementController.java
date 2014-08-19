@@ -1,15 +1,14 @@
-package ib.fatninja.engine.ui;
+package ib.fatninja.engine.movement;
 
-import ib.fatninja.base.AMovableSpriteObject.eMovement;
-import ib.fatninja.engine.ui.events.ITouchable;
+import ib.fatninja.engine.draw.BaseDrawableObj;
+import ib.fatninja.engine.draw.MovableSpriteObject.eMovement;
 import ib.fatninja.managers.ResourceManager;
-import ib.fatninja.ui.TouchHandler;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 
-public class JoyPad4Direction extends BaseDrawableObj implements ITouchable{
+public class JoystickMovementController extends BaseDrawableObj implements IMovementController{
 	
 	private float cx = 0.0f;
 	private float cy = 0.0f;
@@ -35,7 +34,7 @@ public class JoyPad4Direction extends BaseDrawableObj implements ITouchable{
 	
 	private eMovement movement;
 	
-	public JoyPad4Direction(float x, float y, float width, float height){
+	public JoystickMovementController(float x, float y, float width, float height){
 		movement = eMovement.NONE;
 		setX(x);
 		setY(y);
@@ -85,8 +84,8 @@ public class JoyPad4Direction extends BaseDrawableObj implements ITouchable{
         buttonRight.lineTo(B.x, B.y);
         buttonRight.close();
         
-
         buttonUp.close();
+    	setDefault();
 	}
 
 	public void onDrawObj(Canvas c) {		

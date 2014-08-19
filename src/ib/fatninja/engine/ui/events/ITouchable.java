@@ -1,6 +1,6 @@
 package ib.fatninja.engine.ui.events;
 
-import ib.fatninja.engine.ui.IDrawable;
+import ib.fatninja.engine.draw.IDrawable;
 
 public interface ITouchable extends IDrawable{
 	

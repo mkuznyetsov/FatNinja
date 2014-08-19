@@ -1,13 +1,13 @@
 package ib.fatninja.base.terra;
 
-import ib.fatninja.base.ASpriteObject;
 import ib.fatninja.base.acive.NPC.Enemy.Bear;
 import ib.fatninja.engine.collision.ICollisionable;
+import ib.fatninja.engine.draw.SpriteObject;
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SoundManager;
 import android.graphics.Canvas;
 
-public class Apple extends ASpriteObject {
+public class Apple extends SpriteObject {
 	
 	private boolean isFreeToPlace;
 		

@@ -1,7 +1,7 @@
 package ib.fatninja.engine.collision;
 
-import ib.fatninja.base.ASpriteObject.eObjectType;
-import ib.fatninja.engine.ui.IDrawable;
+import ib.fatninja.engine.draw.IDrawable;
+import ib.fatninja.engine.draw.SpriteObject.eObjectType;
 
 public interface ICollisionable extends IDrawable{
 

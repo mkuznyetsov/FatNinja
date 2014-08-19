@@ -1,8 +1,8 @@
 package ib.fatninja.base.acive.NPC.Enemy.Builder;
 
 import android.graphics.Point;
-import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.base.acive.NPC.Enemy.BaseEnemy;
+import ib.fatninja.engine.draw.MovableSpriteObject.eMovement;
 import ib.fatninja.managers.CoordinateManager;
 
 public class EnemySpawnInitializer {

@@ -1,10 +1,9 @@
-package ib.fatninja.ui;
+package ib.fatninja.engine.ui.events;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
-import ib.fatninja.engine.ui.events.ITouchable;
 
 public class TouchHandler {
 

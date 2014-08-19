@@ -2,7 +2,6 @@ package ib.fatninja.base.map.forest0;
 
 import android.graphics.Point;
 import ib.fatninja.R;
-import ib.fatninja.base.AMovableSpriteObject.eMovement;
 import ib.fatninja.base.acive.NPC.Enemy.Bear;
 import ib.fatninja.base.acive.NPC.Enemy.Troll;
 import ib.fatninja.base.acive.NPC.Enemy.Woolf;
@@ -11,6 +10,7 @@ import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilderBorder;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilderRandom;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnInitializer;
 import ib.fatninja.base.map.MapBase;
+import ib.fatninja.engine.draw.MovableSpriteObject.eMovement;
 
 public class Map0_0 extends MapBase {
 		

@@ -1,8 +1,9 @@
-package ib.fatninja.engine.ui;
+package ib.fatninja.engine.ui.controls;
 
+import ib.fatninja.engine.draw.BaseDrawableObj;
 import ib.fatninja.engine.ui.events.ITouchable;
+import ib.fatninja.engine.ui.events.TouchHandler;
 import ib.fatninja.managers.StyleManager;
-import ib.fatninja.ui.TouchHandler;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;

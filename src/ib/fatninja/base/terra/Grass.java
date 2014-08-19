@@ -1,11 +1,11 @@
 package ib.fatninja.base.terra;
 
-import ib.fatninja.base.ASpriteObject;
 import ib.fatninja.engine.collision.ICollisionable;
+import ib.fatninja.engine.draw.SpriteObject;
 import ib.fatninja.managers.ResourceManager;
 import android.graphics.Canvas;
 
-public class Grass extends ASpriteObject {
+public class Grass extends SpriteObject {
 		
 	public Grass( int x, int y){	
 		super(ResourceManager.Instance().getGrassRes());

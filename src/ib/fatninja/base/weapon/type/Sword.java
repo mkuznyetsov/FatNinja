@@ -1,11 +1,11 @@
 package ib.fatninja.base.weapon.type;
 
-import ib.fatninja.base.AMovableSpriteObject;
 import ib.fatninja.base.weapon.MaleWeapon;
+import ib.fatninja.engine.draw.MovableSpriteObject;
 
 public class Sword extends MaleWeapon{
 
-	public Sword(AMovableSpriteObject theOwner) {
+	public Sword(MovableSpriteObject theOwner) {
 		super(theOwner);
 	}
 

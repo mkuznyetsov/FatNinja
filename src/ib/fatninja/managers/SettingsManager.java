@@ -3,6 +3,9 @@ package ib.fatninja.managers;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import ib.fatninja.engine.movement.IMovementController;
+import ib.fatninja.engine.movement.JoystickMovementController;
+import ib.fatninja.engine.movement.RightLeftHandMovementController;
 import ib.fatninja.ui.BaseActivity;
 
 public class SettingsManager {
@@ -58,6 +61,21 @@ public class SettingsManager {
 	public void setSoundEnabled(boolean isSoundEnabled) {
 		this.isSoundEnabled = isSoundEnabled;
 		save("isSoundEnabled", isSoundEnabled);
+	}
+	
+	public IMovementController getMovementController(){
+		IMovementController retVal = null;
+		if(SettingsManager.Instance().isJoyStickEnabled()){
+			retVal = new JoystickMovementController(
+				  CoordinateManager.Instance().getJoystickPosition().x
+				, CoordinateManager.Instance().getJoystickPosition().y
+				, ResourceManager.Instance().getJoyStick().getWidth()
+				, ResourceManager.Instance().getJoyStick().getHeight());
+		}
+		else{
+			retVal = new RightLeftHandMovementController();
+		}
+		return retVal;
 	}
 	
 	private void save(String key, boolean val){

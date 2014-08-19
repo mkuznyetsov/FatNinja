@@ -5,7 +5,7 @@ import ib.fatninja.engine.collision.ICollisionable;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 
-public class BlasterAmmo extends AAmmo {
+public class BlasterAmmo extends BaseAmmo {
 
 	private final float width = 20;
 	private final float height = 3;

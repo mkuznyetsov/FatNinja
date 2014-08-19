@@ -1,4 +1,4 @@
-package ib.fatninja.engine.ui;
+package ib.fatninja.engine.draw;
 
 import android.graphics.Canvas;
 

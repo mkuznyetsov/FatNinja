@@ -1,7 +1,7 @@
-package ib.fatninja.engine.ui;
+package ib.fatninja.engine.ui.layout;
 
-import android.graphics.Point;
 import android.graphics.PointF;
+import ib.fatninja.engine.draw.BaseDrawableObj;
 import ib.fatninja.managers.CoordinateManager;
 
 public class GridLayout {

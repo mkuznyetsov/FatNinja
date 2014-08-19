@@ -1,6 +1,6 @@
 package ib.fatninja.base.acive.NPC.Enemy.Builder;
 
-import ib.fatninja.base.AMovableSpriteObject.eMovement;
+import ib.fatninja.engine.draw.MovableSpriteObject.eMovement;
 import ib.fatninja.managers.CoordinateManager;
 
 public class EnemySpawnBuilderRandom extends EnemySpawnBuilder{

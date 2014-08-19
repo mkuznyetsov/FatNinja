@@ -1,16 +1,16 @@
 package ib.fatninja.base.weapon.unit;
 
-import ib.fatninja.base.AMovableSpriteObject.eMovement;
-import ib.fatninja.base.ASpriteObject.eObjectType;
 import ib.fatninja.base.acive.Player.FatNinja;
 import ib.fatninja.base.weapon.RangeWeapon;
 import ib.fatninja.engine.collision.ICollisionable;
-import ib.fatninja.engine.ui.IDrawable;
+import ib.fatninja.engine.draw.IDrawable;
+import ib.fatninja.engine.draw.MovableSpriteObject.eMovement;
+import ib.fatninja.engine.draw.SpriteObject.eObjectType;
 import android.annotation.SuppressLint;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public abstract class AAmmo extends Paint implements IDrawable, ICollisionable{
+public abstract class BaseAmmo extends Paint implements IDrawable, ICollisionable{
 
 	protected RangeWeapon theOwner;
 	protected FatNinja.eMovement movement = eMovement.NONE;
@@ -24,11 +24,11 @@ public abstract class AAmmo extends Paint implements IDrawable, ICollisionable{
 	private boolean isReloaded = true;
 	private boolean isCollisionDetected;
 	
-	protected AAmmo(){
+	protected BaseAmmo(){
 		
 	}
 	
-	public AAmmo (RangeWeapon theOwner){
+	public BaseAmmo (RangeWeapon theOwner){
 		this.theOwner = theOwner;
 	}
 	

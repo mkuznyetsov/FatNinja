@@ -1,13 +1,13 @@
 package ib.fatninja.base.acive;
 
-import ib.fatninja.base.AMovableSpriteObject;
 import ib.fatninja.base.interactObjects.Armor.Armor;
+import ib.fatninja.engine.draw.MovableSpriteObject;
 import ib.fatninja.managers.CoordinateManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
 
-public abstract class BaseActiveObj extends AMovableSpriteObject{
+public abstract class BaseActiveObj extends MovableSpriteObject{
 
 	protected int currentFrame = 0;
 	protected eObjectType objectType = eObjectType.NONE; 
@@ -107,7 +107,7 @@ public abstract class BaseActiveObj extends AMovableSpriteObject{
 	/**
 	 * <p> This is default value for ticks. </p>
 	 * <p> Amount of ticks will be set to this value before draw the unit</p>
-	 * @see {@link AMovableSpriteObject#ticks}
+	 * @see {@link MovableSpriteObject#ticks}
 	 * */
 	public void setStandardTicks(){
 	}

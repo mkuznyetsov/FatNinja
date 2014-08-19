@@ -1,4 +1,4 @@
-package ib.fatninja.engine.ui;
+package ib.fatninja.engine.draw;
 
 import android.graphics.Canvas;
 
@@ -35,19 +35,19 @@ public abstract class BaseDrawableObj implements IDrawable{
 		return getY() + getHeight();
 	}
 	
-	protected void setHeigth(float height){
+	public void setHeigth(float height){
 		this.height = height;
 	}
 	
-	protected void setWidth(float width){
+	public void setWidth(float width){
 		this.width = width;
 	}
 	
-	protected void setX(float x){
+	public void setX(float x){
 		this.x = x;
 	}
 	
-	protected void setY(float y){
+	public void setY(float y){
 		this.y = y;
 	}
 

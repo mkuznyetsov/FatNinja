@@ -1,12 +1,12 @@
 package ib.fatninja.ui.menu;
 
-import ib.fatninja.engine.ui.Button;
-import ib.fatninja.engine.ui.GridLayout;
+import ib.fatninja.engine.ui.controls.Button;
+import ib.fatninja.engine.ui.events.TouchHandler;
+import ib.fatninja.engine.ui.layout.GridLayout;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
 import ib.fatninja.managers.SettingsManager;
 import ib.fatninja.managers.SoundManager;
-import ib.fatninja.ui.TouchHandler;
 import ib.fatninja.ui.game.GameActivity;
 import android.content.Context;
 import android.content.Intent;

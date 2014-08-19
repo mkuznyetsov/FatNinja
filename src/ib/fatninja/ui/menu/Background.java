@@ -1,6 +1,6 @@
 package ib.fatninja.ui.menu;
 
-import ib.fatninja.engine.ui.IDrawable;
+import ib.fatninja.engine.draw.IDrawable;
 import ib.fatninja.managers.CoordinateManager;
 import ib.fatninja.managers.ResourceManager;
 import android.graphics.Bitmap;
