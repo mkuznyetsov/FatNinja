@@ -1,10 +1,9 @@
 package ib.fatninja.engine.movement;
 
-import ib.fatninja.engine.draw.IDrawable;
 import ib.fatninja.engine.draw.MovableSpriteObject.eMovement;
 import ib.fatninja.engine.ui.events.ITouchable;
 
-public interface IMovementController extends ITouchable, IDrawable{
+public interface IMovementController extends ITouchable{
 
 	/**
 	 * Return the movement of player

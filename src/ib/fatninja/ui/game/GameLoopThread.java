@@ -32,8 +32,12 @@ public class GameLoopThread extends LoopThread {
 				ShowMovieFrame(c, ResourceManager.Instance().getMovieFrame(11), 500);				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			} catch (Exception e){
+				e.printStackTrace();
 			}
-			SettingsManager.Instance().setMovieEnabled(false);
+			finally {
+				SettingsManager.Instance().setMovieEnabled(false);
+			}
 		} 
 	}
 	

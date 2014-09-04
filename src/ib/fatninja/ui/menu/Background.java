@@ -11,7 +11,6 @@ public class Background implements IDrawable {
 
 	private Bitmap cloudsBMP;
 	private Bitmap forestBMP;
-	private Bitmap ninjaBMP;
 	private int cloudsX = 0;
 	private int ticks = 0;
 	private Bitmap[] ninjaList ;

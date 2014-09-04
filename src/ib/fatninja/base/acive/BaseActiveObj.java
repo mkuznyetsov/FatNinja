@@ -5,7 +5,6 @@ import ib.fatninja.engine.draw.MovableSpriteObject;
 import ib.fatninja.managers.CoordinateManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Point;
 
 public abstract class BaseActiveObj extends MovableSpriteObject{
 
@@ -31,10 +30,6 @@ public abstract class BaseActiveObj extends MovableSpriteObject{
 	 * according to {@link #getTurnRate} method.
 	 * */
 	protected void randomMove(){
-		Point[] points = new Point[]{
-			new Point(2,2),
-			new Point(3,4)
-		};
 		double rnd = Math.random() * 100;
 		int rndPercent = (int)rnd;
 		if(rndPercent <= getTurnRate())
@@ -53,7 +48,7 @@ public abstract class BaseActiveObj extends MovableSpriteObject{
 		move();
 	}
 	
-	protected void move (){
+	protected void move(){
 		switch(movement){
 		case RIGHT:
 			moveRight();
@@ -106,7 +101,7 @@ public abstract class BaseActiveObj extends MovableSpriteObject{
 	
 	/**
 	 * <p> This is default value for ticks. </p>
-	 * <p> Amount of ticks will be set to this value before draw the unit</p>
+	 * <p> Amount of ticks will be set to this value before drawing the unit</p>
 	 * @see {@link MovableSpriteObject#ticks}
 	 * */
 	public void setStandardTicks(){

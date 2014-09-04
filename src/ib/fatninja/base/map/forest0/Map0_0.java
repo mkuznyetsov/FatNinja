@@ -7,7 +7,6 @@ import ib.fatninja.base.acive.NPC.Enemy.Troll;
 import ib.fatninja.base.acive.NPC.Enemy.Woolf;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilder;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilderBorder;
-import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnBuilderRandom;
 import ib.fatninja.base.acive.NPC.Enemy.Builder.EnemySpawnInitializer;
 import ib.fatninja.base.map.MapBase;
 import ib.fatninja.engine.draw.MovableSpriteObject.eMovement;

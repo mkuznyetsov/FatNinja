@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -152,7 +151,8 @@ public class MenuView extends SurfaceView {
 
 	private void setSoundCheckboxButton(){
 		setCheckboxButton(soundButton, SettingsManager.Instance().isSoundEnabled()
-				, ResourceManager.Instance().getSoundOnRes(), ResourceManager.Instance().getSoundOffRes());
+				, ResourceManager.Instance().getSoundOnRes()
+				, ResourceManager.Instance().getSoundOffRes());
 	}
 	
 	private void setCheckboxButton(Button btn, boolean isEnabled, Bitmap resourceChecked, Bitmap resourceUnchecked){
