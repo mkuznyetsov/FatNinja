@@ -3,7 +3,6 @@ package ib.fatninja.base.acive.Player;
 import ib.fatninja.base.acive.BaseActiveObj;
 import ib.fatninja.base.weapon.BaseWeapon;
 import ib.fatninja.base.weapon.type.Blaster;
-import ib.fatninja.engine.collision.CollisionHandler;
 import ib.fatninja.engine.collision.ICollisionable;
 import ib.fatninja.engine.ui.events.ITouchable;
 import ib.fatninja.managers.ResourceManager;
@@ -13,8 +12,6 @@ import android.graphics.Canvas;
 public class FatNinja extends BaseActiveObj implements ITouchable{
 
 	private BaseWeapon selectedWeapon ;
-	private double distance_x;
-	private double distance_y;
 	public boolean isDead ;
 	private int applesCount = 0;
 	
@@ -96,7 +93,7 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 	public void onTouchClick(float x, float y) {
 	}
 	
-	public void onTouchRelease(float x, float y) {;
+	public void onTouchRelease(float x, float y) {
 	}
 
 	public eObjectType getObjectType() {

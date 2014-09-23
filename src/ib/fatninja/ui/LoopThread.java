@@ -33,8 +33,8 @@ public abstract class LoopThread extends Thread {
 				c = view.getHolder().lockCanvas();
 				synchronized (view.getHolder()) {
 					if (c != null) {
-						onTick(c);
-						view.draw(c);
+						onTick(c);   //update
+						view.draw(c);//render
 					}
 				}
 			} finally {
