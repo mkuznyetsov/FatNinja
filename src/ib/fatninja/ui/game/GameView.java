@@ -38,7 +38,8 @@ public class GameView extends SurfaceView {
 	public GameView(Context context) throws IOException {
 		super(context);
 		touchHandler = new TouchHandler();
-		movementController = SettingsManager.Instance().getMovementController();		
+		movementController = SettingsManager.Instance().getMovementController();
+		FatNinja.Instance().setMovementController(movementController);	
 		gameThread = new GameLoopThread(this);
 		holder = getHolder();		
 		holder.addCallback(new SurfaceHolder.Callback() {
@@ -74,7 +75,7 @@ public class GameView extends SurfaceView {
 	
 	@Override
 	public void draw(Canvas c){
-		FatNinja.Instance().setMovement(movementController.getMovement());	
+		FatNinja.Instance().updateMovement();
 		appleDelayCounter++;
 		ticksPerLevelCounter--;
 

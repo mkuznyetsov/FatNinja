@@ -4,6 +4,7 @@ import ib.fatninja.base.acive.BaseActiveObj;
 import ib.fatninja.base.weapon.BaseWeapon;
 import ib.fatninja.base.weapon.type.Blaster;
 import ib.fatninja.engine.collision.ICollisionable;
+import ib.fatninja.engine.movement.IMovementController;
 import ib.fatninja.engine.ui.events.ITouchable;
 import ib.fatninja.managers.ResourceManager;
 import android.annotation.SuppressLint;
@@ -14,6 +15,7 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 	private BaseWeapon selectedWeapon ;
 	public boolean isDead ;
 	private int applesCount = 0;
+	private IMovementController movementController;
 	
 	private static FatNinja instance;
 	
@@ -35,12 +37,21 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 		setY(200);
 		setX(0);
 		isDead = false;
-		setMovement(eMovement.RIGHT);		
+		setMovement(eMovement.NONE);
 	}
 	
 	@Override
 	public void setStandardTicks(){
 		setTicks(0);
+	}
+	
+	@Override
+	public void setMovement(eMovement movement){
+		if(movement != getMovement())
+		{
+			movementController.setMovement(movement);
+			super.setMovement(movement);
+		}
 	}
 
 	public void increseApples(){
@@ -56,13 +67,9 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 		selectedWeapon.onActionDraw(c);
 		if(waitDelay()){
 			move();
-			checkEndOfMap(c);	
+			checkEndOfMap(c);
 		}	
-		c.drawBitmap(bitmapList.get(movement).get(currentFrame), x, y, null);
-	}
-
-	public void setMovement(eMovement movement){
-		this.movement = movement;
+		c.drawBitmap(bitmapList.get(getMovement()).get(currentFrame), x, y, null);
 	}
 
 	public void onCollision(ICollisionable handledObj) {
@@ -80,9 +87,8 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 			case INTERACT:
 				increseApples();
 				break;
-				
-		default:
-			break;
+			default:
+				break;
 		}
 	}
 
@@ -98,6 +104,15 @@ public class FatNinja extends BaseActiveObj implements ITouchable{
 
 	public eObjectType getObjectType() {
 		return objectType;
+	}
+	
+	public void setMovementController(IMovementController movementController){
+		this.movementController = movementController;
+	}
+	
+	public void updateMovement()
+	{
+		setMovement(movementController.getMovement());
 	}
 
 	@Override

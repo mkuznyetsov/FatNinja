@@ -37,19 +37,19 @@ public abstract class BaseActiveObj extends MovableSpriteObject{
 			double rndMove = Math.random() * 4;
 			int rndMoveInt = (int)rndMove;
 			if(rndMoveInt == 0)
-				movement = eMovement.DOWN;
+				setMovement(eMovement.DOWN);
 			if(rndMoveInt == 1)
-				movement = eMovement.UP;
+				setMovement(eMovement.UP);
 			if(rndMoveInt == 2)
-				movement = eMovement.LEFT;
+				setMovement(eMovement.LEFT);
 			if(rndMoveInt == 3)
-				movement = eMovement.RIGHT;
+				setMovement(eMovement.RIGHT);
 		}
 		move();
 	}
 	
 	protected void move(){
-		switch(movement){
+		switch(getMovement()){
 		case RIGHT:
 			moveRight();
 			break;
@@ -69,18 +69,18 @@ public abstract class BaseActiveObj extends MovableSpriteObject{
 	}
 	
 	protected void moveReverse(){
-		switch(movement){
+		switch(getMovement()){
 		case DOWN:
-			movement = eMovement.UP;
+			setMovement(eMovement.UP);
 			break;
 		case UP:
-			movement = eMovement.DOWN;
+			setMovement(eMovement.DOWN);
 			break;
 		case RIGHT:
-			movement = eMovement.LEFT;
+			setMovement(eMovement.LEFT);
 			break;
 		case LEFT:
-			movement = eMovement.RIGHT;
+			setMovement(eMovement.RIGHT);
 			break;
 		default:
 			break;
@@ -90,13 +90,13 @@ public abstract class BaseActiveObj extends MovableSpriteObject{
 	
 	protected void checkEndOfMap(Canvas c){
 		if(x >= mapWidth - frameWidth)
-			movement = eMovement.LEFT;		
+			setMovement(eMovement.LEFT);
 		if(x <= -1)
-			movement = eMovement.RIGHT;
+			setMovement(eMovement.RIGHT);
 		if(y > c.getHeight() - frameHeight )
-			movement = eMovement.UP;
+			setMovement(eMovement.UP);
 		if(y <= -1)
-			movement = eMovement.DOWN;
+			setMovement(eMovement.DOWN);
 	}
 	
 	/**

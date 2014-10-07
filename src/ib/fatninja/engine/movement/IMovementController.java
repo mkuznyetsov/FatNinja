@@ -11,7 +11,12 @@ public interface IMovementController extends ITouchable{
 	eMovement getMovement();
 	
 	/**
-	 * Set movement and variables to default
+	 * Set the movement and variables to default
 	 * */
 	void setDefault();
+	
+	/**
+	 * Set the movement 
+	 * */
+	void setMovement(eMovement movement);
 }

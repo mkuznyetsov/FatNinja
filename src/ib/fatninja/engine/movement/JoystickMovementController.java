@@ -144,19 +144,22 @@ public class JoystickMovementController extends BaseDrawableObj implements IMove
 	
 	private boolean pointInTriangle(PointF pt, PointF v1, PointF v2, PointF v3)
 	{
-	  boolean b1, b2, b3;
-
-	  b1 = sign(pt, v1, v2) < 0.0f;
-	  b2 = sign(pt, v2, v3) < 0.0f;
-	  b3 = sign(pt, v3, v1) < 0.0f;
-
-	  return ((b1 == b2) && (b2 == b3));
+		boolean b1, b2, b3;
+		
+		b1 = sign(pt, v1, v2) < 0.0f;
+		b2 = sign(pt, v2, v3) < 0.0f;
+		b3 = sign(pt, v3, v1) < 0.0f;
+		
+		return ((b1 == b2) && (b2 == b3));
 	}
 
 	private float sign(PointF p1, PointF p2, PointF p3)
 	{
-	  return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+		return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
 	}
 
-
+	@Override
+	public void setMovement(eMovement movement) {
+		this.movement = movement;		
+	}
 }

@@ -23,7 +23,7 @@ public abstract class MovableSpriteObject extends SpriteObject{
 	/**
 	 * The direction in which the unit is faced.
 	 * */
-	protected eMovement movement = eMovement.NONE;
+	private eMovement movement = eMovement.NONE;
 
 	/**
 	 * The value which is added to unit position when the unit is moving.

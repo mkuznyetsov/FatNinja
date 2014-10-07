@@ -104,7 +104,12 @@ public class RightLeftHandMovementController implements IMovementController{
 
 	@Override
 	public void setDefault() {		
-		movement = eMovement.RIGHT;
+		movement = eMovement.NONE;
+	}
+	
+	@Override
+	public void setMovement(eMovement movement) {
+		this.movement = movement;		
 	}
 
 }

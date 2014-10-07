@@ -14,7 +14,7 @@ public class CoordinateManager {
 
 	private final int SpriteCollisionErrorPercentOfTile = 12;
 	
-	private final int SpriteStepPerTile = 8;
+	private final int SpriteStepPerTile = 7;
 	
 	private final int SmallestSideTiles = 10;
 	
